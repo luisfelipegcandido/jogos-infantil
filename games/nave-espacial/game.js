@@ -171,7 +171,13 @@ function resizeCanvas() {
   if (!canvas) return;
   const container = canvas.parentElement;
   if (!container) return;
-  const maxW = Math.min(container.clientWidth - 4, CANVAS_W);
+  const containerW = container.clientWidth;
+  // If container hasn't been laid out yet (clientWidth === 0), defer to next frame
+  if (containerW === 0) {
+    requestAnimationFrame(resizeCanvas);
+    return;
+  }
+  const maxW = Math.min(containerW - 4, CANVAS_W);
   const maxH = Math.min(window.innerHeight * 0.70, CANVAS_H);
   const scale = Math.min(maxW / CANVAS_W, maxH / CANVAS_H, 1);
   canvas.style.width  = Math.floor(CANVAS_W * scale) + 'px';
@@ -735,9 +741,14 @@ function reset() {
   state.level              = 1;
   state.gameOver           = false;
   state.running            = false;
-  state.lastAsteroidSpawn  = 0;
-  state.lastShot           = 0;
-  state.invincibleUntil    = 0;
+  // Use performance.now() so invincibleUntil is relative to real elapsed time.
+  // Gives a 1.5s grace period at game start so the ship isn't hit immediately.
+  state.invincibleUntil    = performance.now() + INVINCIBLE_DURATION;
+  // Seed spawn/shot timers with current time so the first asteroid doesn't
+  // appear in the very first frame (timestamp - 0 would be huge).
+  const now                = performance.now();
+  state.lastAsteroidSpawn  = now;
+  state.lastShot           = now;
   debris.length            = 0;
 
   // Reset input
@@ -831,13 +842,25 @@ function initTouchControls() {
  * Hides loading overlay once everything is ready.
  */
 function boot() {
+  // Grab the loading overlay early (before init() assigns DOM refs)
+  const loadingEl = document.getElementById('overlay-loading');
+
   const go = () => {
-    if (overlayLoading) overlayLoading.classList.add('hidden');
     init();
+    // Hide loading overlay after init() has run (so overlayLoading ref is now valid)
+    if (overlayLoading) overlayLoading.classList.add('hidden');
+    if (loadingEl)      loadingEl.classList.add('hidden');
   };
 
+  // Give fonts a 2-second window; if they haven't loaded by then, start anyway.
+  // This prevents the game from being stuck on the loading screen when Google
+  // Fonts are slow or blocked (e.g. on GitHub Pages with a cold cache).
   if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(go);
+    const fontTimeout = setTimeout(go, 2000);
+    document.fonts.ready.then(() => {
+      clearTimeout(fontTimeout);
+      go();
+    });
   } else {
     go();
   }
