@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Catálogo de Jogos Infantil — Jogos divertidos para meninos de 8 a 10 anos. Ação, Memória, Raciocínio e Quebra-Cabeça, tudo no seu navegador!" />
+  <meta name="theme-color" content="#0A0A14" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Catálogo de Jogos Infantil" />
+  <meta property="og:description" content="Jogos divertidos para meninos de 8 a 10 anos. Sem instalação, sem login!" />
+
+  <title>Catálogo de Jogos Infantil</title>
+
+  <!-- Global styles -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- =====================================================================
+       Navigation
+       ===================================================================== -->
+  <nav class="nav" id="nav" role="navigation" aria-label="Navegação principal">
+    <div class="nav__container">
+
+      <!-- Brand / Logo -->
+      <a class="nav__brand" href="#home" aria-label="Catálogo de Jogos Infantil — Página inicial">
+        <span class="nav__brand-icon" aria-hidden="true">🎮</span>
+        <span class="nav__brand-name">Jogos Infantil</span>
+      </a>
+
+      <!-- Hamburger button (visible on mobile < 768px) -->
+      <button
+        class="nav__hamburger"
+        id="nav-hamburger"
+        type="button"
+        aria-label="Abrir menu de navegação"
+        aria-expanded="false"
+        aria-controls="nav-menu"
+      >
+        <span class="nav__hamburger-line" aria-hidden="true"></span>
+        <span class="nav__hamburger-line" aria-hidden="true"></span>
+        <span class="nav__hamburger-line" aria-hidden="true"></span>
+      </button>
+
+      <!-- Navigation links -->
+      <ul class="nav__menu" id="nav-menu" role="list">
+        <li class="nav__item">
+          <a class="nav__link" href="#home" data-section="home">
+            <span class="nav__link-icon" aria-hidden="true">🏠</span>
+            Início
+          </a>
+        </li>
+        <li class="nav__item">
+          <a class="nav__link" href="#catalogo" data-section="catalogo">
+            <span class="nav__link-icon" aria-hidden="true">🎯</span>
+            Catálogo
+          </a>
+        </li>
+        <li class="nav__item">
+          <a class="nav__link" href="#categorias" data-section="categorias">
+            <span class="nav__link-icon" aria-hidden="true">📂</span>
+            Categorias
+          </a>
+        </li>
+        <li class="nav__item">
+          <a class="nav__link" href="#privacidade" data-section="privacidade">
+            <span class="nav__link-icon" aria-hidden="true">🔒</span>
+            Política de Privacidade
+          </a>
+        </li>
+      </ul>
+
+    </div>
+  </nav>
+
+  <!-- =====================================================================
+       Main Content
+       ===================================================================== -->
+  <main id="main-content">
+
+    <!-- -------------------------------------------------------------------
+         Section: Home (#home)
+         ------------------------------------------------------------------- -->
+    <section id="home" class="section section--home" aria-labelledby="home-heading">
+
+      <!-- Hero / Banner -->
+      <div class="hero animate-on-scroll">
+        <div class="hero__content">
+          <h1 class="hero__title" id="home-heading">
+            <span class="hero__title-accent">Jogos</span> Incríveis<br />
+            para Você Jogar!
+          </h1>
+          <p class="hero__subtitle">
+            Aventuras, memória, quiz e quebra-cabeça —<br />
+            tudo no seu navegador, sem instalar nada!
+          </p>
+          <a class="btn btn--primary btn--lg" href="#catalogo" aria-label="Ver todos os jogos no catálogo">
+            <span aria-hidden="true">🚀</span>
+            Ver Jogos
+          </a>
+        </div>
+        <div class="hero__decoration" aria-hidden="true">
+          <div class="hero__planet hero__planet--1">🪐</div>
+          <div class="hero__planet hero__planet--2">⭐</div>
+          <div class="hero__planet hero__planet--3">🌙</div>
+        </div>
+      </div>
+
+      <!-- Featured Games -->
+      <div class="featured animate-on-scroll" data-delay="100" aria-labelledby="featured-heading">
+        <h2 class="section__title" id="featured-heading">
+          <span aria-hidden="true">⭐</span>
+          Jogos em Destaque
+        </h2>
+        <!-- Cards injected by js/catalog.js → Catalog.renderFeatured() -->
+        <div class="games-grid games-grid--featured" id="featured-grid" role="list" aria-label="Jogos em destaque">
+          <!-- Dynamic content -->
+        </div>
+      </div>
+
+      <!-- Categories overview (links to #catalogo with filter active) -->
+      <div class="categories-overview animate-on-scroll" data-delay="200" id="categorias" aria-labelledby="categories-overview-heading">
+        <h2 class="section__title" id="categories-overview-heading">
+          <span aria-hidden="true">📂</span>
+          Categorias
+        </h2>
+        <!-- Category icons injected by js/catalog.js → Catalog.renderCategoryIcons() -->
+        <div class="categories-grid" id="categories-grid" role="list" aria-label="Categorias de jogos">
+          <!-- Dynamic content -->
+        </div>
+      </div>
+
+    </section>
+
+    <!-- -------------------------------------------------------------------
+         Section: Catalog (#catalogo)
+         ------------------------------------------------------------------- -->
+    <section id="catalogo" class="section section--catalogo animate-on-scroll" aria-labelledby="catalog-heading">
+
+      <h2 class="section__title" id="catalog-heading">
+        <span aria-hidden="true">🎯</span>
+        Catálogo de Jogos
+      </h2>
+
+      <!-- Filter buttons -->
+      <div class="filter-bar" role="group" aria-label="Filtrar jogos por categoria">
+        <!-- Buttons injected by js/catalog.js → Catalog.renderFilterButtons() -->
+        <div class="filter-bar__buttons" id="filter-buttons">
+          <!-- Dynamic content -->
+        </div>
+      </div>
+
+      <!-- Game cards grid -->
+      <div
+        class="games-grid"
+        id="catalog-grid"
+        role="list"
+        aria-label="Lista de jogos"
+        aria-live="polite"
+        aria-atomic="false"
+      >
+        <!-- Cards injected by js/catalog.js → Catalog.init() -->
+      </div>
+
+      <!-- Empty state message (hidden by default; shown when no games match filter) -->
+      <div class="empty-state" id="catalog-empty" hidden role="status" aria-live="polite">
+        <p class="empty-state__icon" aria-hidden="true">🔍</p>
+        <p class="empty-state__message">Nenhum jogo encontrado nesta categoria.</p>
+        <p class="empty-state__hint">Novos jogos em breve!</p>
+      </div>
+
+    </section>
+
+    <!-- -------------------------------------------------------------------
+         Section: Privacy Policy (#privacidade)
+         ------------------------------------------------------------------- -->
+    <section id="privacidade" class="section section--privacidade" aria-labelledby="privacy-heading">
+
+      <div class="privacy">
+        <h2 class="section__title" id="privacy-heading">
+          <span aria-hidden="true">🔒</span>
+          Política de Privacidade
+        </h2>
+
+        <div class="privacy__content">
+
+          <p class="privacy__updated">
+            <strong>Última atualização:</strong>
+            <time id="privacy-date" datetime="">carregando…</time>
+          </p>
+
+          <article class="privacy__section">
+            <h3>Coleta de Dados</h3>
+            <p>
+              O Catálogo de Jogos Infantil <strong>não coleta, armazena, processa nem
+              compartilha nenhuma informação pessoal</strong> dos usuários. Nenhum dado
+              é enviado a qualquer servidor.
+            </p>
+          </article>
+
+          <article class="privacy__section">
+            <h3>Cookies e Rastreadores</h3>
+            <p>
+              Este site <strong>não utiliza cookies, rastreadores, analytics</strong> nem
+              qualquer tecnologia de monitoramento de comportamento. Não há publicidade
+              e não há perfis de usuário.
+            </p>
+          </article>
+
+          <article class="privacy__section">
+            <h3>Execução dos Jogos</h3>
+            <p>
+              Todos os jogos são executados <strong>localmente no navegador do usuário</strong>,
+              sem comunicação com servidores externos. Nenhuma informação sobre partidas,
+              pontuações ou preferências é transmitida para fora do dispositivo.
+            </p>
+          </article>
+
+          <article class="privacy__section">
+            <h3>Finalidade</h3>
+            <p>
+              O conteúdo desta plataforma é destinado exclusivamente para
+              <strong>entretenimento e diversão</strong> de crianças de 8 a 10 anos,
+              com supervisão dos responsáveis.
+            </p>
+          </article>
+
+          <article class="privacy__section">
+            <h3>Contato</h3>
+            <p>
+              Em caso de dúvidas sobre esta política, entre em contato pelo repositório
+              do projeto no GitHub.
+            </p>
+          </article>
+
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- =====================================================================
+       Footer
+       ===================================================================== -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer__container">
+
+      <div class="footer__brand">
+        <span aria-hidden="true">🎮</span>
+        <span>Catálogo de Jogos Infantil</span>
+      </div>
+
+      <nav class="footer__nav" aria-label="Links do rodapé">
+        <a class="footer__link" href="#home">Início</a>
+        <a class="footer__link" href="#catalogo">Catálogo</a>
+        <a class="footer__link" href="#privacidade">Privacidade</a>
+      </nav>
+
+      <p class="footer__copy">
+        Feito com <span aria-label="amor" role="img">❤️</span> para crianças curiosas.
+        Código aberto no
+        <a
+          class="footer__link"
+          href="https://github.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Abrir repositório no GitHub (abre em nova aba)"
+        >GitHub</a>.
+      </p>
+
+    </div>
+  </footer>
+
+  <!-- =====================================================================
+       Scripts
+       Note: defer ensures DOM is parsed before scripts run.
+       Load order: catalog data → router → catalog module → ui
+       ===================================================================== -->
+  <script src="games/catalog.js" defer></script>
+  <script src="js/router.js" defer></script>
+  <script src="js/catalog.js" defer></script>
+  <script src="js/ui.js" defer></script>
+
+  <!-- App entry-point — initialise after all modules are loaded -->
+  <script defer>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Set privacy policy date dynamically so it stays current
+      const privacyDate = document.getElementById('privacy-date');
+      if (privacyDate) {
+        const now = new Date();
+        const formatted = now.toLocaleDateString('pt-BR', {
+          day: '2-digit',
+          month: 'long',
+          year: 'numeric'
+        });
+        privacyDate.textContent = formatted;
+        privacyDate.setAttribute('datetime', now.toISOString().split('T')[0]);
+      }
+
+      // Bootstrap modules (guards handle the case where js/ files don't exist yet)
+      if (typeof Router !== 'undefined') Router.init();
+      if (typeof Catalog !== 'undefined' && typeof GAMES !== 'undefined') {
+        Catalog.init(GAMES);
+      }
+      if (typeof UI !== 'undefined') {
+        UI.initNavMenu();
+        UI.initAnimations();
+      }
+    });
+  </script>
+
+</body>
+</html>
