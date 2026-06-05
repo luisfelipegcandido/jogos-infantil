@@ -42,31 +42,31 @@ const GAMES = [
     path:        "games/nave-espacial/index.html",
     featured:    true
   },
-  {
-    id:          "memoria",
-    title:       "Jogo da Memória",
-    description: "Encontre todos os pares e treine sua memória!",
-    category:    "Memoria",
-    cover:       "games/memoria/cover.png",
-    path:        "games/memoria/index.html",
-    featured:    true
-  },
-  {
-    id:          "quiz",
-    title:       "Quiz de Conhecimentos",
-    description: "Responda perguntas sobre ciência, natureza e espaço!",
-    category:    "Raciocinio",
-    cover:       "games/quiz/cover.png",
-    path:        "games/quiz/index.html",
-    featured:    true
-  },
-  {
-    id:          "puzzle-deslizante",
-    title:       "Quebra-Cabeça Deslizante",
-    description: "Deslize as peças e monte o quebra-cabeça numérico!",
-    category:    "Quebra-Cabeca",
-    cover:       "games/puzzle-deslizante/cover.png",
-    path:        "games/puzzle-deslizante/index.html",
-    featured:    true
-  }
+  // {
+  //   id:          "memoria",
+  //   title:       "Jogo da Memória",
+  //   description: "Encontre todos os pares e treine sua memória!",
+  //   category:    "Memoria",
+  //   cover:       "games/memoria/cover.png",
+  //   path:        "games/memoria/index.html",
+  //   featured:    true
+  // },
+  // {
+  //   id:          "quiz",
+  //   title:       "Quiz de Conhecimentos",
+  //   description: "Responda perguntas sobre ciência, natureza e espaço!",
+  //   category:    "Raciocinio",
+  //   cover:       "games/quiz/cover.png",
+  //   path:        "games/quiz/index.html",
+  //   featured:    true
+  // },
+  // {
+  //   id:          "puzzle-deslizante",
+  //   title:       "Quebra-Cabeça Deslizante",
+  //   description: "Deslize as peças e monte o quebra-cabeça numérico!",
+  //   category:    "Quebra-Cabeca",
+  //   cover:       "games/puzzle-deslizante/cover.png",
+  //   path:        "games/puzzle-deslizante/index.html",
+  //   featured:    true
+  // }
 ];
