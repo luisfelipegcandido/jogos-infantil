@@ -34,7 +34,7 @@ const Catalog = (function () {
   const FILTER_ALL = 'all';
 
   /** Caminho do placeholder de imagem de capa quando cover não existe */
-  const COVER_PLACEHOLDER = 'assets/cover-placeholder.svg';
+  const COVER_PLACEHOLDER = 'assets/cover-placeholder.png';
 
   /** CSS class do botão de filtro ativo */
   const FILTER_ACTIVE_CLASS = 'filter-btn--active';
@@ -341,6 +341,11 @@ const Catalog = (function () {
     let featured = _games.filter(function (g) { return g.featured === true; });
     if (featured.length === 0) {
       featured = _games.slice(-MAX_FEATURED);
+    }
+
+    // If more then 4 apply randon sort
+    if (featured.length > 4) {
+      featured = featured.sort(() => Math.random() - 0.5).slice(0, MAX_FEATURED);
     }
 
     // Hard cap at MAX_FEATURED — Propriedade 7

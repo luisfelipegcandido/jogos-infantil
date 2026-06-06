@@ -926,6 +926,7 @@ body {
   font-family: var(--font-heading);
   font-size: var(--text-3xl);
   color: var(--color-text);
+  margin-top: var(--gap-2xl);
   margin-bottom: var(--gap-xl);
   display: flex;
   align-items: center;

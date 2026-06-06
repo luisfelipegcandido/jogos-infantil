@@ -79,13 +79,13 @@ const GAMES = [
     featured:    true
   },
   {
-    id: "forca-divertida",
-    title: "Forca Divertida",
+    id:          "forca-divertida",
+    title:       "Forca Divertida",
     description: "Descubra a palavra antes das tentativas acabarem.",
-    category: "Raciocinio",
-    cover: "games/forca-divertida/cover.png",
-    path: "games/forca-divertida/index.html",
-    featured: false
+    category:    "Raciocinio",
+    cover:       "games/forca-divertida/cover.png",
+    path:        "games/forca-divertida/index.html",
+    featured:    true
   },
   {
     id:          "desafio-matematico",
@@ -94,6 +94,6 @@ const GAMES = [
     category:    "Raciocinio",
     cover:       "games/desafio-matematico/cover.png",
     path:        "games/desafio-matematico/index.html",
-    featured:    false
+    featured:    true
   }
 ];
