@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Quebra-Cabeça dos Animais — Monte a imagem do animal corretamente! Catálogo de Jogos Infantil." />
+  <title>Quebra-Cabeça dos Animais — Catálogo de Jogos Infantil</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="game-page">
+  <div class="game-page__topbar" role="banner">
+    <a
+      class="game-page__back-btn"
+      href="../../index.html#catalogo"
+      aria-label="Voltar ao Catálogo"
+    >
+      <span aria-hidden="true">←</span>
+      Voltar ao Catálogo
+    </a>
+    <span class="game-page__topbar-title" aria-hidden="true">Quebra-Cabeça dos Animais</span>
+  </div>
+  <header class="game-page__header">
+    <span class="game-page__category" aria-label="Categoria: Quebra-Cabeça">
+      <span aria-hidden="true">🧩</span>
+      Quebra-Cabeça
+    </span>
+    <h1 class="game-page__title">Quebra-Cabeça dos Animais</h1>
+    <p class="game-page__description">Monte a imagem do animal corretamente.</p>
+  </header>
+  <!-- <div
+    class="game-page__loading"
+    id="game-loading"
+    role="status"
+    aria-label="Carregando jogo"
+    aria-live="polite"
+  >
+    <div class="loading-spinner" aria-hidden="true">
+      <span class="loading-spinner__dot"></span>
+      <span class="loading-spinner__dot"></span>
+      <span class="loading-spinner__dot"></span>
+    </div>
+    <span>Carregando…</span>
+  </div> -->
+
+  <main class="game-page__container" aria-label="Quebra-Cabeça dos Animais">
+    <div class="hud">
+      <span>Tentativas: <strong id="moves">0</strong></span>
+      <button id="new-game">
+        🔀 Novo Jogo
+      </button>
+    </div>
+    <div id="board" class="board"></div>
+    <div id="victory" class="victory hidden">
+      <h2>🎉 Muito Bem!</h2>
+      <p>Você completou o quebra-cabeça.</p>
+      <button id="play-again">
+        Jogar Novamente
+      </button>
+    </div>
+  </main>
+
+  <div class="game-page__footer">
+    <a
+      class="btn btn--secondary"
+      href="../../index.html#catalogo"
+      aria-label="Voltar ao Catálogo de Jogos"
+    >
+      <span aria-hidden="true">←</span>
+      Voltar ao Catálogo
+    </a>
+  </div>
+  <script src="game.js"></script>
+</body>
+</html>

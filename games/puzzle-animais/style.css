@@ -1,0 +1,26 @@
+.board {
+    width:360px;
+    height:360px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    grid-template-rows:repeat(3,1fr);
+    gap:4px;
+}
+.piece {
+    border-radius:10px;
+    cursor:pointer;
+    border:2px solid #fff;
+}
+.piece.selected {
+    outline:4px solid yellow;
+}
+.hud {
+    margin-bottom:20px;
+}
+.hidden {
+    display:none;
+}
+.victory {
+    margin-top:20px;
+    text-align:center;
+}

@@ -38,7 +38,7 @@ const GAMES = [
     title:       "Nave Espacial",
     description: "Destrua asteroides e salve a galáxia!",
     category:    "Acao",
-    cover:       "games/nave-espacial/cover.svg",
+    cover:       "games/nave-espacial/cover.png",
     path:        "games/nave-espacial/index.html",
     featured:    true
   },
@@ -47,7 +47,7 @@ const GAMES = [
     title:       "Jogo da Memória",
     description: "Encontre todos os pares e treine sua memória!",
     category:    "Memoria",
-    cover:       "games/memoria/cover.svg",
+    cover:       "games/memoria/cover.png",
     path:        "games/memoria/index.html",
     featured:    true
   },
@@ -56,7 +56,7 @@ const GAMES = [
     title:       "Quiz de Conhecimentos",
     description: "Responda perguntas sobre ciência, natureza e espaço!",
     category:    "Raciocinio",
-    cover:       "games/quiz/cover.svg",
+    cover:       "games/quiz/cover.png",
     path:        "games/quiz/index.html",
     featured:    true
   },
@@ -65,8 +65,17 @@ const GAMES = [
     title:       "Quebra-Cabeça Deslizante",
     description: "Deslize as peças e monte o quebra-cabeça numérico!",
     category:    "Quebra-Cabeca",
-    cover:       "games/puzzle-deslizante/cover.svg",
+    cover:       "games/puzzle-deslizante/cover.png",
     path:        "games/puzzle-deslizante/index.html",
+    featured:    true
+  },
+  {
+    id:          "puzzle-animais",
+    title:       "Quebra-Cabeça dos Animais",
+    description: "Monte a imagem do animal corretamente!",
+    category:    "Quebra-Cabeca",
+    cover:       "games/puzzle-animais/cover.png",
+    path:        "games/puzzle-animais/index.html",
     featured:    true
   }
 ];
