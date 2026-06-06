@@ -86,5 +86,14 @@ const GAMES = [
     cover: "games/forca-divertida/cover.png",
     path: "games/forca-divertida/index.html",
     featured: false
+  },
+  {
+    id:          "desafio-matematico",
+    title:       "Desafio Matemático",
+    description: "Resolva contas e conquiste pontos.",
+    category:    "Raciocinio",
+    cover:       "games/desafio-matematico/cover.png",
+    path:        "games/desafio-matematico/index.html",
+    featured:    false
   }
 ];
