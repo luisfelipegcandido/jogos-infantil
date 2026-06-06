@@ -77,5 +77,14 @@ const GAMES = [
     cover:       "games/puzzle-animais/cover.png",
     path:        "games/puzzle-animais/index.html",
     featured:    true
+  },
+  {
+    id: "forca-divertida",
+    title: "Forca Divertida",
+    description: "Descubra a palavra antes das tentativas acabarem.",
+    category: "Raciocinio",
+    cover: "games/forca-divertida/cover.png",
+    path: "games/forca-divertida/index.html",
+    featured: false
   }
 ];
