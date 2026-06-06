@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 225" width="400" height="225">
+  <defs>
+    <radialGradient id="quiz-bg" cx="50%" cy="40%" r="65%">
+      <stop offset="0%" stop-color="#0f1a1a"/>
+      <stop offset="100%" stop-color="#0f0f1a"/>
+    </radialGradient>
+    <filter id="q-glow">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="q-shadow">
+      <feDropShadow dx="1" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="225" fill="url(#quiz-bg)"/>
+
+  <!-- Decorative dots -->
+  <circle cx="18" cy="22" r="1.5" fill="#7fff00" opacity="0.6"/>
+  <circle cx="55" cy="12" r="1" fill="#00d4ff" opacity="0.7"/>
+  <circle cx="370" cy="30" r="1.3" fill="#b44aff" opacity="0.6"/>
+  <circle cx="392" cy="80" r="0.9" fill="#7fff00" opacity="0.5"/>
+  <circle cx="12" cy="150" r="1.1" fill="#00d4ff" opacity="0.6"/>
+  <circle cx="395" cy="160" r="1.2" fill="#ffffff" opacity="0.5"/>
+
+  <!-- Giant question mark (center) -->
+  <g transform="translate(200, 105)" filter="url(#q-glow)">
+    <text font-family="'Fredoka One', 'Arial Rounded MT Bold', Arial, sans-serif" font-size="120" font-weight="bold" fill="#00d4ff" text-anchor="middle" dominant-baseline="middle" opacity="0.15">?</text>
+  </g>
+  <g transform="translate(200, 105)">
+    <text font-family="'Fredoka One', 'Arial Rounded MT Bold', Arial, sans-serif" font-size="90" font-weight="bold" fill="#00d4ff" text-anchor="middle" dominant-baseline="middle" opacity="0.9">?</text>
+  </g>
+
+  <!-- Science icons orbiting the question mark -->
+
+  <!-- Atom (top-left) -->
+  <g transform="translate(82, 75)">
+    <circle cx="0" cy="0" r="6" fill="#00d4ff" opacity="0.9"/>
+    <ellipse cx="0" cy="0" rx="22" ry="9" fill="none" stroke="#00d4ff" stroke-width="1.5" opacity="0.8"/>
+    <ellipse cx="0" cy="0" rx="22" ry="9" fill="none" stroke="#00d4ff" stroke-width="1.5" opacity="0.8" transform="rotate(60)"/>
+    <ellipse cx="0" cy="0" rx="22" ry="9" fill="none" stroke="#00d4ff" stroke-width="1.5" opacity="0.8" transform="rotate(-60)"/>
+    <!-- Electrons -->
+    <circle cx="22" cy="0" r="3" fill="#7fff00" opacity="0.9"/>
+    <circle cx="-11" cy="19" r="3" fill="#7fff00" opacity="0.9"/>
+    <circle cx="-11" cy="-19" r="3" fill="#7fff00" opacity="0.9"/>
+  </g>
+
+  <!-- Planet (top-right) -->
+  <g transform="translate(318, 75)">
+    <circle cx="0" cy="0" r="20" fill="#1a0840" stroke="#b44aff" stroke-width="2"/>
+    <circle cx="0" cy="0" r="20" fill="none" stroke="#b44aff" stroke-width="1.5"/>
+    <!-- Planet bands -->
+    <path d="M-20,0 Q-10,-6 0,-6 Q10,-6 20,0" fill="none" stroke="#b44aff" stroke-width="1.5" opacity="0.5"/>
+    <path d="M-18,7 Q-9,3 0,3 Q9,3 18,7" fill="none" stroke="#b44aff" stroke-width="1.2" opacity="0.4"/>
+    <!-- Ring -->
+    <ellipse cx="0" cy="0" rx="32" ry="8" fill="none" stroke="#b44aff" stroke-width="1.5" opacity="0.6"/>
+  </g>
+
+  <!-- Lightning bolt (bottom-left) -->
+  <g transform="translate(72, 155)" filter="url(#q-shadow)">
+    <path d="M10,-25 L-2,-2 L8,-2 L-10,25 L18,0 L6,0 Z" fill="#7fff00" opacity="0.9"/>
+    <path d="M10,-25 L-2,-2 L8,-2 L-10,25 L18,0 L6,0 Z" fill="none" stroke="#ffffff" stroke-width="0.8" opacity="0.5"/>
+  </g>
+
+  <!-- DNA helix icon (bottom-right) -->
+  <g transform="translate(318, 155)">
+    <!-- Helix strand 1 -->
+    <path d="M-12,-25 C-4,-15 4,-10 12,-25" fill="none" stroke="#00d4ff" stroke-width="2" opacity="0.8"/>
+    <path d="M-12,-10 C-4,0 4,5 12,-10" fill="none" stroke="#00d4ff" stroke-width="2" opacity="0.8"/>
+    <path d="M-12,5 C-4,15 4,20 12,5" fill="none" stroke="#00d4ff" stroke-width="2" opacity="0.8"/>
+    <path d="M-12,20 C-4,30 4,35 12,20" fill="none" stroke="#00d4ff" stroke-width="2" opacity="0.8"/>
+    <!-- Helix strand 2 -->
+    <path d="M12,-25 C4,-15 -4,-10 -12,-25" fill="none" stroke="#b44aff" stroke-width="2" opacity="0.8"/>
+    <path d="M12,-10 C4,0 -4,5 -12,-10" fill="none" stroke="#b44aff" stroke-width="2" opacity="0.8"/>
+    <path d="M12,5 C4,15 -4,20 -12,5" fill="none" stroke="#b44aff" stroke-width="2" opacity="0.8"/>
+    <path d="M12,20 C4,30 -4,35 -12,20" fill="none" stroke="#b44aff" stroke-width="2" opacity="0.8"/>
+    <!-- Cross bars -->
+    <line x1="-8" y1="-17" x2="8" y2="-17" stroke="#7fff00" stroke-width="1.5" opacity="0.7"/>
+    <line x1="-8" y1="-2" x2="8" y2="-2" stroke="#7fff00" stroke-width="1.5" opacity="0.7"/>
+    <line x1="-8" y1="13" x2="8" y2="13" stroke="#7fff00" stroke-width="1.5" opacity="0.7"/>
+    <line x1="-8" y1="28" x2="8" y2="28" stroke="#7fff00" stroke-width="1.5" opacity="0.7"/>
+  </g>
+
+  <!-- Timer arc (top-center) -->
+  <g transform="translate(200, 35)">
+    <path d="M-18,0 A18,18 0 0,1 18,0" fill="none" stroke="#7fff00" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+    <circle cx="0" cy="0" r="5" fill="#7fff00" opacity="0.8"/>
+    <line x1="0" y1="0" x2="6" y2="-14" stroke="#7fff00" stroke-width="2" stroke-linecap="round" opacity="0.9"/>
+  </g>
+
+  <!-- Title text -->
+  <text x="200" y="198" font-family="'Fredoka One', 'Arial Rounded MT Bold', Arial, sans-serif" font-size="20" font-weight="bold" fill="#ffffff" text-anchor="middle" letter-spacing="1">
+    QUIZ DE CONHECIMENTOS
+  </text>
+  <text x="200" y="215" font-family="Arial, sans-serif" font-size="10.5" fill="#7fff00" text-anchor="middle" letter-spacing="2" opacity="0.9">
+    CIÊNCIA · NATUREZA · ESPAÇO
+  </text>
+
+  <!-- Bottom glow line -->
+  <rect x="80" y="220" width="240" height="2" fill="#7fff00" opacity="0.4" rx="1"/>
+</svg>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Quiz de Conhecimentos — Responda perguntas sobre ciência, natureza e espaço! Catálogo de Jogos Infantil." />
+  <title>Quiz de Conhecimentos — Catálogo de Jogos Infantil</title>
+  <!-- Global styles (shared template) -->
+  <link rel="stylesheet" href="../../css/style.css" />
+  <!-- Game-specific styles -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="game-page">
+
+  <!-- =====================================================================
+       Top bar — back button + game title (shared template)
+       ===================================================================== -->
+  <div class="game-page__topbar" role="banner">
+    <a
+      class="game-page__back-btn"
+      href="../../index.html#catalogo"
+      aria-label="Voltar ao Catálogo"
+    >
+      <span aria-hidden="true">←</span>
+      Voltar ao Catálogo
+    </a>
+    <span class="game-page__topbar-title" aria-hidden="true">Quiz de Conhecimentos</span>
+  </div>
+
+  <!-- =====================================================================
+       Game header — title / category / description (shared template)
+       ===================================================================== -->
+  <header class="game-page__header">
+    <span class="game-page__category" aria-label="Categoria: Raciocínio">
+      <span aria-hidden="true">💡</span>
+      Raciocínio
+    </span>
+    <h1 class="game-page__title">Quiz de Conhecimentos</h1>
+    <p class="game-page__description">Responda perguntas sobre ciência, natureza e espaço!</p>
+  </header>
+
+  <!-- =====================================================================
+       Loading indicator (shared template — visible until game is ready)
+       ===================================================================== -->
+  <div
+    class="game-page__loading"
+    id="game-loading"
+    role="status"
+    aria-label="Carregando jogo"
+    aria-live="polite"
+  >
+    <div class="loading-spinner" aria-hidden="true">
+      <span class="loading-spinner__dot"></span>
+      <span class="loading-spinner__dot"></span>
+      <span class="loading-spinner__dot"></span>
+    </div>
+    <span>Carregando…</span>
+  </div>
+
+  <!-- =====================================================================
+       Main game area
+       ===================================================================== -->
+  <main class="game-page__container" aria-label="Área do Quiz de Conhecimentos">
+
+    <!-- Start screen overlay -->
+    <div
+      class="game-overlay hidden"
+      id="overlay-start"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Início do Quiz"
+    >
+      <div class="quiz-start-icon" aria-hidden="true">💡</div>
+      <h2 class="overlay-title">Quiz de Conhecimentos</h2>
+      <p class="overlay-subtitle">10 perguntas sobre ciência, natureza e espaço</p>
+      <ul class="quiz-rules" aria-label="Regras do jogo">
+        <li>⏱️ 15 segundos por pergunta</li>
+        <li>✅ Feedback imediato após cada resposta</li>
+        <li>🏆 Veja sua pontuação no final</li>
+      </ul>
+      <button class="btn-start" id="btn-start" autofocus>
+        Começar Quiz!
+      </button>
+    </div>
+
+    <!-- Result overlay -->
+    <div
+      class="game-overlay hidden"
+      id="overlay-result"
+      role="alertdialog"
+      aria-modal="true"
+      aria-label="Resultado final"
+    >
+      <div class="result-icon" id="result-icon" aria-hidden="true">🏆</div>
+      <h2 class="overlay-title overlay-title--result" id="result-title">Resultado</h2>
+      <p class="result-score">
+        <span id="result-correct">0</span>
+        <span class="result-score-sep">de</span>
+        <span id="result-total">10</span>
+        <span class="result-score-label">corretas</span>
+      </p>
+      <p class="result-message" id="result-message"></p>
+      <button class="btn-restart" id="btn-restart" autofocus>
+        Jogar Novamente
+      </button>
+    </div>
+
+    <!-- Quiz game area -->
+    <div class="quiz-game" id="quiz-game" aria-label="Quiz de Conhecimentos">
+
+      <!-- Progress bar + question counter -->
+      <div class="quiz-progress-wrapper" aria-label="Progresso">
+        <div class="quiz-progress-info">
+          <span class="quiz-question-counter" id="quiz-question-counter" aria-live="polite">
+            Pergunta 1 de 10
+          </span>
+          <span class="quiz-score-live" aria-live="polite">
+            Pontos: <strong id="quiz-score-live">0</strong>
+          </span>
+        </div>
+        <div
+          class="quiz-progress-bar"
+          role="progressbar"
+          aria-valuemin="0"
+          aria-valuemax="10"
+          aria-valuenow="0"
+          id="quiz-progress-bar"
+        >
+          <div class="quiz-progress-fill" id="quiz-progress-fill"></div>
+        </div>
+      </div>
+
+      <!-- Timer -->
+      <div class="quiz-timer-wrapper" aria-label="Tempo restante">
+        <svg class="quiz-timer-svg" viewBox="0 0 44 44" aria-hidden="true">
+          <circle class="quiz-timer-track" cx="22" cy="22" r="18" />
+          <circle class="quiz-timer-ring" id="quiz-timer-ring" cx="22" cy="22" r="18" />
+        </svg>
+        <span class="quiz-timer-count" id="quiz-timer-count" aria-live="assertive" aria-atomic="true">15</span>
+      </div>
+
+      <!-- Question card -->
+      <div class="quiz-question-card" id="quiz-question-card" role="region" aria-label="Pergunta atual">
+        <p class="quiz-question-text" id="quiz-question-text">
+          Carregando pergunta…
+        </p>
+      </div>
+
+      <!-- Answer options -->
+      <div class="quiz-options" id="quiz-options" role="group" aria-label="Opções de resposta">
+        <!-- Populated by game.js -->
+      </div>
+
+      <!-- Feedback bar (correct / wrong) -->
+      <div
+        class="quiz-feedback hidden"
+        id="quiz-feedback"
+        aria-live="polite"
+        aria-atomic="true"
+      >
+        <span class="quiz-feedback-icon" id="quiz-feedback-icon" aria-hidden="true"></span>
+        <span class="quiz-feedback-text" id="quiz-feedback-text"></span>
+      </div>
+
+    </div><!-- /.quiz-game -->
+
+  </main><!-- /.game-page__container -->
+
+  <!-- =====================================================================
+       Footer back link (shared template)
+       ===================================================================== -->
+  <div class="game-page__footer">
+    <a
+      class="btn btn--secondary"
+      href="../../index.html#catalogo"
+      aria-label="Voltar ao Catálogo de Jogos"
+    >
+      <span aria-hidden="true">←</span>
+      Voltar ao Catálogo
+    </a>
+  </div>
+
+  <script src="questions.js" defer></script>
+  <script src="game.js" defer></script>
+</body>
+</html>

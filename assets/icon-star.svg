@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="presentation" aria-hidden="true">
+  <defs>
+    <radialGradient id="starGrad" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#ccff44"/>
+      <stop offset="100%" stop-color="#77cc00"/>
+    </radialGradient>
+    <filter id="starGlow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Outer glow ring -->
+  <circle cx="32" cy="32" r="28" fill="#7fff00" opacity="0.12"/>
+
+  <!-- 5-point star -->
+  <polygon
+    points="32,6 37.9,24.1 57,24.1 41.5,35.4 47.4,53.5 32,42.2 16.6,53.5 22.5,35.4 7,24.1 26.1,24.1"
+    fill="url(#starGrad)"
+    filter="url(#starGlow)"
+  />
+
+  <!-- Inner highlight -->
+  <polygon
+    points="32,14 35.5,24.8 46.8,24.8 37.8,31.2 41.2,42 32,35.6 22.8,42 26.2,31.2 17.2,24.8 28.5,24.8"
+    fill="#ccff44"
+    opacity="0.4"
+  />
+
+  <!-- Center sparkle -->
+  <circle cx="32" cy="32" r="4" fill="#ffffff" opacity="0.5"/>
+
+  <!-- Sparkle cross lines -->
+  <line x1="32" y1="2"  x2="32" y2="10" stroke="#7fff00" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
+  <line x1="32" y1="54" x2="32" y2="62" stroke="#7fff00" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
+  <line x1="2"  y1="32" x2="10" y2="32" stroke="#7fff00" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
+  <line x1="54" y1="32" x2="62" y2="32" stroke="#7fff00" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
+</svg>

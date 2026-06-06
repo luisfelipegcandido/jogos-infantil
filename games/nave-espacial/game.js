@@ -131,7 +131,7 @@ let btnRestart;
 function init() {
   canvas         = document.getElementById('game-canvas');
   ctx            = canvas.getContext('2d');
-  overlayLoading = document.getElementById('overlay-loading');
+  overlayLoading  = null; // handled by shared game-page__loading template element
   overlayGameover = document.getElementById('overlay-gameover');
   finalScoreEl   = document.getElementById('final-score');
   hudScoreEl     = document.getElementById('hud-score-value');
@@ -839,17 +839,16 @@ function initTouchControls() {
 
 /**
  * Wait for fonts to load (if available), then start.
- * Hides loading overlay once everything is ready.
+ * Hides the shared loading indicator (game-page__loading) once ready.
  */
 function boot() {
-  // Grab the loading overlay early (before init() assigns DOM refs)
-  const loadingEl = document.getElementById('overlay-loading');
+  // Grab the shared loading indicator (defined in the HTML template)
+  const loadingEl = document.getElementById('game-loading');
 
   const go = () => {
     init();
-    // Hide loading overlay after init() has run (so overlayLoading ref is now valid)
-    if (overlayLoading) overlayLoading.classList.add('hidden');
-    if (loadingEl)      loadingEl.classList.add('hidden');
+    // Hide shared loading indicator — game is ready for interaction
+    if (loadingEl) loadingEl.classList.add('is-hidden');
   };
 
   // Give fonts a 2-second window; if they haven't loaded by then, start anyway.

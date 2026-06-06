@@ -34,7 +34,7 @@ const Catalog = (function () {
   const FILTER_ALL = 'all';
 
   /** Caminho do placeholder de imagem de capa quando cover não existe */
-  const COVER_PLACEHOLDER = 'assets/cover-placeholder.png';
+  const COVER_PLACEHOLDER = 'assets/cover-placeholder.svg';
 
   /** CSS class do botão de filtro ativo */
   const FILTER_ACTIVE_CLASS = 'filter-btn--active';

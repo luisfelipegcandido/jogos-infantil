@@ -36,7 +36,7 @@
   - [x] 5.5 Implementar estilos das seções da página de jogo individual (header com título/categoria/descrição, container do jogo, botão "Voltar ao Catálogo")
 
 - [ ] 6. Política de Privacidade
-  - [~] 6.1 Implementar o conteúdo da seção `#privacidade` declarando: não coleta de dados, ausência de cookies/analytics, execução local dos jogos, finalidade de entretenimento e data da última atualização
+  - [x] 6.1 Implementar o conteúdo da seção `#privacidade` declarando: não coleta de dados, ausência de cookies/analytics, execução local dos jogos, finalidade de entretenimento e data da última atualização
 
 - [x] 7. Jogo — Nave Espacial (Ação)
   - [x] 7.1 Criar diretório `games/nave-espacial/` com `index.html`, `game.js` e `style.css`
@@ -45,34 +45,34 @@
   - [x] 7.4 Implementar HUD (pontuação e vidas) com atualização em tempo real e lógica de progressão de dificuldade (velocidade e frequência de asteroides aumentam com o score)
   - [x] 7.5 Implementar tela de Game Over (quando `lives === 0`) com pontuação final e botão de reinício; adicionar ao `GAMES` em `catalog.js`
 
-- [ ] 8. Jogo — Jogo da Memória (Memória)
-  - [~] 8.1 Criar diretório `games/memoria/` com `index.html`, `game.js` e `style.css`
-  - [~] 8.2 Implementar geração do tabuleiro com pares de cartas usando emojis temáticos, com suporte a dois níveis de dificuldade (8 pares = fácil, 16 pares = difícil)
-  - [~] 8.3 Implementar lógica de clique: virar carta, verificar par (`a.value === b.value && a.id !== b.id`), manter pares corretos virados e virar pares incorretos após 1 segundo
-  - [~] 8.4 Implementar contagem de tentativas, tela de vitória (quando todos os pares forem encontrados) com número de tentativas e botão de reinício; adicionar ao `GAMES` em `catalog.js`
+- [x] 8. Jogo — Jogo da Memória (Memória)
+  - [x] 8.1 Criar diretório `games/memoria/` com `index.html`, `game.js` e `style.css`
+  - [x] 8.2 Implementar geração do tabuleiro com pares de cartas usando emojis temáticos, com suporte a dois níveis de dificuldade (8 pares = fácil, 16 pares = difícil)
+  - [x] 8.3 Implementar lógica de clique: virar carta, verificar par (`a.value === b.value && a.id !== b.id`), manter pares corretos virados e virar pares incorretos após 1 segundo
+  - [x] 8.4 Implementar contagem de tentativas, tela de vitória (quando todos os pares forem encontrados) com número de tentativas e botão de reinício; adicionar ao `GAMES` em `catalog.js`
 
-- [ ] 9. Jogo — Quiz de Conhecimentos (Raciocínio)
-  - [~] 9.1 Criar diretório `games/quiz/` com `index.html`, `game.js` e `style.css`
-  - [~] 9.2 Criar banco de dados com ao menos 20 perguntas de múltipla escolha (4 alternativas cada) sobre ciência, natureza e espaço em `games/quiz/questions.js`
-  - [~] 9.3 Implementar lógica de jogo: embaralhar perguntas a cada partida, selecionar 10 para a rodada, exibir feedback visual imediato (verde/vermelho) ao responder, revelar resposta correta quando errada
-  - [~] 9.4 Implementar temporizador de 15 segundos por pergunta que avança automaticamente ao zerar (contando a resposta como incorreta); implementar tela de resultado final com pontuação e mensagem motivacional; adicionar ao `GAMES` em `catalog.js`
+- [x] 9. Jogo — Quiz de Conhecimentos (Raciocínio)
+  - [x] 9.1 Criar diretório `games/quiz/` com `index.html`, `game.js` e `style.css`
+  - [x] 9.2 Criar banco de dados com ao menos 20 perguntas de múltipla escolha (4 alternativas cada) sobre ciência, natureza e espaço em `games/quiz/questions.js`
+  - [x] 9.3 Implementar lógica de jogo: embaralhar perguntas a cada partida, selecionar 10 para a rodada, exibir feedback visual imediato (verde/vermelho) ao responder, revelar resposta correta quando errada
+  - [x] 9.4 Implementar temporizador de 15 segundos por pergunta que avança automaticamente ao zerar (contando a resposta como incorreta); implementar tela de resultado final com pontuação e mensagem motivacional; adicionar ao `GAMES` em `catalog.js`
 
-- [ ] 10. Jogo — Quebra-Cabeça Deslizante (Quebra-Cabeça)
-  - [~] 10.1 Criar diretório `games/puzzle-deslizante/` com `index.html`, `game.js` e `style.css`
-  - [~] 10.2 Implementar função de embaralhamento que garante configuração com solução possível (verificação de paridade das inversões; se insolúvel, trocar dois elementos para corrigir a paridade)
-  - [~] 10.3 Implementar lógica de movimento: ao clicar/tocar em peça adjacente ao espaço vazio (`0`), trocar as posições da peça e do espaço no array, atualizar o DOM e incrementar o contador de movimentos
-  - [~] 10.4 Implementar verificação de vitória (board == [1,2,3,4,5,6,7,8,0]) com animação de vitória, exibição do número de movimentos e botão de reinício; adicionar ao `GAMES` em `catalog.js`
+- [x] 10. Jogo — Quebra-Cabeça Deslizante (Quebra-Cabeça)
+  - [x] 10.1 Criar diretório `games/puzzle-deslizante/` com `index.html`, `game.js` e `style.css`
+  - [x] 10.2 Implementar função de embaralhamento que garante configuração com solução possível (verificação de paridade das inversões; se insolúvel, trocar dois elementos para corrigir a paridade)
+  - [x] 10.3 Implementar lógica de movimento: ao clicar/tocar em peça adjacente ao espaço vazio (`0`), trocar as posições da peça e do espaço no array, atualizar o DOM e incrementar o contador de movimentos
+  - [x] 10.4 Implementar verificação de vitória (board == [1,2,3,4,5,6,7,8,0]) com animação de vitória, exibição do número de movimentos e botão de reinício; adicionar ao `GAMES` em `catalog.js`
 
-- [ ] 11. Página de jogo (template compartilhado)
-  - [~] 11.1 Criar template HTML base para páginas de jogo com: carregamento de `../../css/style.css`, header com título/categoria/descrição, container do jogo, botão "Voltar ao Catálogo" (`../../index.html#catalogo`), e indicador de loading
-  - [~] 11.2 Implementar em cada `index.html` de jogo o indicador de loading (spinner visível até o jogo estar pronto para interação)
+- [x] 11. Página de jogo (template compartilhado)
+  - [x] 11.1 Criar template HTML base para páginas de jogo com: carregamento de `../../css/style.css`, header com título/categoria/descrição, container do jogo, botão "Voltar ao Catálogo" (`../../index.html#catalogo`), e indicador de loading
+  - [x] 11.2 Implementar em cada `index.html` de jogo o indicador de loading (spinner visível até o jogo estar pronto para interação)
 
-- [ ] 12. Integração final e polimento
-  - [~] 12.1 Preencher `games/catalog.js` com os metadados dos 4 jogos implementados (id, title, description, category, cover, path, featured)
-  - [~] 12.2 Criar imagens de capa (`cover.png`) para cada jogo em seus respectivos diretórios; criar `assets/cover-placeholder.png` para fallback
-  - [~] 12.3 Criar `assets/` com ícones e ilustrações vetoriais temáticas (espaço, games, aventura) usados como decoração nas páginas principais
-  - [~] 12.4 Verificar caminhos relativos em todos os links, scripts e imagens para compatibilidade com GitHub Pages (subdiretório de repositório)
-  - [~] 12.5 Testar a plataforma nos 4 navegadores alvo (Chrome 90+, Firefox 88+, Safari 14+, Edge 90+) e corrigir inconsistências
+- [-] 12. Integração final e polimento
+  - [x] 12.1 Preencher `games/catalog.js` com os metadados dos 4 jogos implementados (id, title, description, category, cover, path, featured)
+  - [x] 12.2 Criar imagens de capa (`cover.png`) para cada jogo em seus respectivos diretórios; criar `assets/cover-placeholder.png` para fallback
+  - [x] 12.3 Criar `assets/` com ícones e ilustrações vetoriais temáticas (espaço, games, aventura) usados como decoração nas páginas principais
+  - [x] 12.4 Verificar caminhos relativos em todos os links, scripts e imagens para compatibilidade com GitHub Pages (subdiretório de repositório)
+  - [-] 12.5 Testar a plataforma nos 4 navegadores alvo (Chrome 90+, Firefox 88+, Safari 14+, Edge 90+) e corrigir inconsistências
   - [~] 12.6 Executar auditoria de acessibilidade (Lighthouse ou axe): verificar contraste ≥4.5:1, áreas de toque ≥44×44px, fontes ≥16px
 
 - [ ] 13. Testes

@@ -304,7 +304,8 @@ textarea {
   color: inherit;
   background: none;
   border: none;
-  outline: none;
+  /* NOTE: outline is NOT removed here — focus styles are managed by
+     :focus-visible below to preserve keyboard accessibility. */
 }
 
 /* Remove button defaults */
@@ -514,6 +515,18 @@ body {
   align-items: center;
   gap: var(--gap-xs);
   list-style: none;
+}
+
+/* Flex gap fallback for Safari < 14.1 */
+.nav__item + .nav__item {
+  margin-left: var(--gap-xs);
+}
+
+/* Override margin when gap is supported */
+@supports (gap: 1px) {
+  .nav__item + .nav__item {
+    margin-left: 0;
+  }
 }
 
 .nav__item {
@@ -857,16 +870,38 @@ body {
 
 .game-card__cover-wrapper {
   position: relative;
+  /* aspect-ratio fallback for Safari < 15 / Firefox < 88 */
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 0;
   aspect-ratio: 16 / 9;
   overflow: hidden;
   background-color: var(--color-bg-elevated);
 }
 
+/* When aspect-ratio is supported natively, undo the padding-bottom hack */
+@supports (aspect-ratio: 16 / 9) {
+  .game-card__cover-wrapper {
+    padding-bottom: 0;
+    height: auto;
+  }
+}
+
 .game-card__cover {
+  /* When using the padding-bottom aspect-ratio fallback, fill the wrapper */
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform var(--transition-slow);
+}
+
+/* When aspect-ratio is natively supported, use normal flow positioning */
+@supports (aspect-ratio: 16 / 9) {
+  .game-card__cover {
+    position: static;
+  }
 }
 
 .game-card:hover .game-card__cover,
@@ -1026,6 +1061,13 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: var(--gap-sm);
+}
+
+/* Flex gap fallback for Safari < 14.1 */
+@supports not (gap: 1px) {
+  .filter-bar__buttons .filter-btn {
+    margin: calc(var(--gap-sm) / 2);
+  }
 }
 
 /* Individual filter button */
@@ -1205,6 +1247,7 @@ body {
   height: 12rem;
   flex-shrink: 0;
   pointer-events: none;
+  -webkit-user-select: none;
   user-select: none;
 }
 
@@ -1252,6 +1295,120 @@ body {
 
   .hero__planet {
     font-size: var(--text-3xl);
+  }
+}
+
+
+/* ==========================================================================
+   Hero Decorative Assets — SVG illustrations and floating icons (Task 12.3)
+   Requisito 10.3 — ícones e ilustrações vetoriais temáticas
+   ========================================================================== */
+
+/* ---- Hero illustration — space scene, absolutely positioned right side ---- */
+.hero__illustration {
+  position: absolute;
+  top: 50%;
+  right: -4rem;
+  transform: translateY(-50%);
+  width: clamp(280px, 42vw, 520px);
+  height: auto;
+  opacity: 0.22;
+  pointer-events: none;
+  -webkit-user-select: none;
+  user-select: none;
+  z-index: var(--z-below);
+  border-radius: var(--radius-2xl);
+  /* Fade out on left edge so it blends into the hero background */
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 25%);
+  mask-image: linear-gradient(to right, transparent 0%, black 25%);
+}
+
+/* Make hero the containing block for absolute children */
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+
+/* ---- Floating icon container ---- */
+.hero__float-icons {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  -webkit-user-select: none;
+  user-select: none;
+  z-index: var(--z-base);
+  overflow: hidden;
+}
+
+/* Shared base for all floating icons */
+.hero__float-icon {
+  position: absolute;
+  width: 3rem;
+  height: 3rem;
+  opacity: 0.55;
+  pointer-events: none;
+  animation: heroIconFloat 5s ease-in-out infinite;
+}
+
+/* Individual positions and animation stagger */
+.hero__float-icon--rocket {
+  top: 12%;
+  right: 10%;
+  width: 2.75rem;
+  height: 2.75rem;
+  animation-duration: 4.5s;
+  animation-delay: 0s;
+}
+
+.hero__float-icon--star {
+  bottom: 18%;
+  right: 22%;
+  width: 2.25rem;
+  height: 2.25rem;
+  animation-duration: 5.5s;
+  animation-delay: 1.4s;
+}
+
+.hero__float-icon--gamepad {
+  top: 55%;
+  right: 6%;
+  width: 3rem;
+  height: 3rem;
+  animation-duration: 6s;
+  animation-delay: 2.8s;
+}
+
+/* Slow, gentle float keyframe — up and down */
+@keyframes heroIconFloat {
+  0%, 100% {
+    transform: translateY(0)     rotate(0deg);
+  }
+  33% {
+    transform: translateY(-10px) rotate(4deg);
+  }
+  66% {
+    transform: translateY(5px)   rotate(-3deg);
+  }
+}
+
+/* ---- Hide / reposition on mobile (≤ 768px) ---- */
+@media (max-width: 768px) {
+  .hero__illustration {
+    /* On mobile the hero stacks vertically; tuck illustration behind as very faint bg */
+    position: absolute;
+    top: auto;
+    bottom: -2rem;
+    right: 50%;
+    transform: translateX(50%);
+    width: clamp(200px, 80vw, 360px);
+    opacity: 0.10;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  /* Hide floating icons on small screens — they overlap content */
+  .hero__float-icons {
+    display: none;
   }
 }
 
@@ -1614,6 +1771,9 @@ body {
 .game-page__game {
   width: 100%;
   max-width: 56rem;    /* 896px — comfortable game width */
+  /* aspect-ratio fallback for Safari < 15 */
+  padding-bottom: 56.25%; /* 16:9 fallback */
+  height: 0;
   aspect-ratio: 16 / 9;
   background-color: var(--color-bg-surface);
   border: 1px solid var(--color-border);
@@ -1621,6 +1781,14 @@ body {
   overflow: hidden;
   box-shadow: var(--shadow-xl);
   position: relative;
+}
+
+/* When aspect-ratio is natively supported, undo padding-bottom hack */
+@supports (aspect-ratio: 16 / 9) {
+  .game-page__game {
+    padding-bottom: 0;
+    height: auto;
+  }
 }
 
 /* Canvas inside the game element fills it completely */

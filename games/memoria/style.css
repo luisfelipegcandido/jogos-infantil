@@ -1,0 +1,465 @@
+/* ==========================================================================
+   Jogo da Memória — Game-specific Styles
+   games/memoria/style.css
+   ========================================================================== */
+
+/* Note: Page layout, top bar, header, back button, loading indicator, and
+   footer styles come from the shared template in ../../css/style.css via
+   the .game-page__* class family. Only game-specific styles are defined here.
+*/
+
+/* --------------------------------------------------------------------------
+   Game Container inner layout
+   -------------------------------------------------------------------------- */
+.game-page__container {
+  justify-content: flex-start;
+}
+
+/* --------------------------------------------------------------------------
+   Overlays (Difficulty / Victory)
+   -------------------------------------------------------------------------- */
+.game-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--color-bg-overlay);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  z-index: 100;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  padding: 24px;
+}
+
+.game-overlay.hidden {
+  display: none;
+}
+
+.overlay-title {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  color: var(--color-purple-light);
+  text-shadow: 0 0 16px var(--color-purple-glow);
+  margin: 0;
+  text-align: center;
+}
+
+.overlay-title--victory {
+  color: var(--color-green);
+  text-shadow: 0 0 16px var(--color-green-glow);
+}
+
+.overlay-subtitle {
+  font-size: 1.125rem;
+  color: var(--color-text-muted);
+  text-align: center;
+  margin: 0;
+}
+
+.overlay-score {
+  font-size: 1.25rem;
+  color: var(--color-text);
+  text-align: center;
+  margin: 0;
+}
+
+.overlay-score strong {
+  color: var(--color-purple-light);
+  font-size: 1.75rem;
+  font-family: var(--font-heading);
+}
+
+/* Difficulty buttons */
+.difficulty-buttons {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn-difficulty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  background: var(--color-bg-surface);
+  color: var(--color-text);
+  border: 2px solid var(--color-purple);
+  border-radius: 16px;
+  padding: 24px 40px;
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  cursor: pointer;
+  min-width: 140px;
+  min-height: 120px;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.1s, border-color 0.2s;
+  box-shadow: 0 4px 16px var(--color-purple-glow);
+}
+
+.btn-difficulty:hover,
+.btn-difficulty:focus-visible {
+  background: var(--color-purple-dark);
+  box-shadow: 0 6px 28px var(--color-purple-glow);
+  transform: translateY(-2px);
+  outline: 2px solid var(--color-purple-light);
+  outline-offset: 2px;
+}
+
+.btn-difficulty--hard {
+  border-color: var(--color-error);
+  box-shadow: 0 4px 16px rgba(255, 51, 85, 0.35);
+}
+
+.btn-difficulty--hard:hover,
+.btn-difficulty--hard:focus-visible {
+  background: rgba(255, 51, 85, 0.18);
+  box-shadow: 0 6px 28px rgba(255, 51, 85, 0.45);
+}
+
+.btn-difficulty small {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  font-weight: 600;
+}
+
+.btn-difficulty span {
+  font-size: 2rem;
+}
+
+/* Victory action buttons */
+.victory-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn-restart {
+  background: var(--color-green);
+  color: var(--color-text-inverted);
+  border: none;
+  border-radius: 10px;
+  padding: 14px 36px;
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  cursor: pointer;
+  min-height: 52px;
+  min-width: 160px;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
+  box-shadow: 0 4px 20px var(--color-green-glow);
+}
+
+.btn-restart:hover,
+.btn-restart:focus-visible {
+  background: var(--color-green-light);
+  box-shadow: 0 6px 28px var(--color-green-glow);
+  transform: translateY(-2px);
+  outline: 2px solid var(--color-green-light);
+  outline-offset: 2px;
+}
+
+.btn-restart:active {
+  transform: translateY(0);
+}
+
+.btn-change-difficulty {
+  background: transparent;
+  color: var(--color-purple-light);
+  border: 2px solid var(--color-purple);
+  border-radius: 10px;
+  padding: 14px 24px;
+  font-family: var(--font-heading);
+  font-size: 1.125rem;
+  cursor: pointer;
+  min-height: 52px;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
+}
+
+.btn-change-difficulty:hover,
+.btn-change-difficulty:focus-visible {
+  background: var(--color-purple-dark);
+  box-shadow: 0 4px 16px var(--color-purple-glow);
+  transform: translateY(-2px);
+  outline: 2px solid var(--color-purple-light);
+  outline-offset: 2px;
+}
+
+/* Loading spinner styles are defined in ../../css/style.css */
+
+/* --------------------------------------------------------------------------
+   Memory Game Wrapper
+   -------------------------------------------------------------------------- */
+.memory-game {
+  width: 100%;
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* --------------------------------------------------------------------------
+   HUD
+   -------------------------------------------------------------------------- */
+.memory-hud {
+  display: flex;
+  gap: 24px;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 12px 24px;
+  width: 100%;
+  max-width: 480px;
+  justify-content: space-around;
+}
+
+.hud-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.hud-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+}
+
+.hud-value {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  color: var(--color-purple-light);
+  text-shadow: 0 0 8px var(--color-purple-glow);
+}
+
+/* --------------------------------------------------------------------------
+   Memory Board — Card Grid
+   -------------------------------------------------------------------------- */
+.memory-board {
+  display: grid;
+  gap: 10px;
+  width: 100%;
+  /* Default: easy mode (4×4) */
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* Hard mode: 8×4 (32 cards / 16 pairs) */
+.memory-board--hard {
+  grid-template-columns: repeat(8, 1fr);
+}
+
+@media (max-width: 600px) {
+  .memory-board--hard {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 7px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Memory Card
+   -------------------------------------------------------------------------- */
+.memory-card {
+  position: relative;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  padding: 0;
+  border-radius: 10px;
+  /* 3D perspective for flip animation */
+  perspective: 600px;
+  -webkit-perspective: 600px;
+  min-width: 44px;  /* touch target */
+  -webkit-appearance: none;
+  appearance: none;
+  /* aspect-ratio fallback for Safari 14: padding-bottom makes height = width */
+  width: 100%;
+  padding-bottom: 100%;
+  height: 0;
+  aspect-ratio: 1 / 1;
+}
+
+/* When aspect-ratio is natively supported, undo padding-bottom hack */
+@supports (aspect-ratio: 1 / 1) {
+  .memory-card {
+    padding-bottom: 0;
+    height: auto;
+    min-height: 44px; /* touch target */
+  }
+}
+
+.memory-card:focus-visible {
+  outline: 2px solid var(--color-purple);
+  outline-offset: 3px;
+  border-radius: 10px;
+}
+
+/* Inner wrapper that flips */
+.memory-card__inner {
+  /* Absolutely positioned to fill the card (works with padding-bottom aspect-ratio hack) */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transition: -webkit-transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 10px;
+}
+
+/* Flipped state — card face is shown */
+.memory-card.is-flipped .memory-card__inner {
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+
+/* Matched state — stays face up with glow */
+.memory-card.is-matched .memory-card__inner {
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+
+.memory-card.is-matched .memory-card__front {
+  border-color: var(--color-green);
+  box-shadow: 0 0 12px var(--color-green-glow), 0 0 24px var(--color-green-glow);
+}
+
+/* Card back (initially visible) */
+.memory-card__back,
+.memory-card__front {
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.memory-card__back {
+  background: var(--color-bg-surface);
+  border: 2px solid var(--color-purple);
+  box-shadow: 0 2px 8px var(--color-purple-glow);
+  font-size: 1.5rem;
+  color: var(--color-purple-light);
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.memory-card:hover:not(.is-flipped):not(.is-matched) .memory-card__back {
+  background: var(--color-bg-elevated);
+  border-color: var(--color-purple-light);
+  box-shadow: 0 4px 16px var(--color-purple-glow);
+}
+
+/* Card front (shown when flipped) */
+.memory-card__front {
+  background: var(--color-bg-elevated);
+  border: 2px solid var(--color-border);
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+  font-size: 2rem;
+  /* Prevent emoji from being too large on small cards */
+  line-height: 1;
+}
+
+/* Scale emoji proportionally to card size */
+@media (max-width: 480px) {
+  .memory-card__front {
+    font-size: 1.25rem;
+  }
+
+  .memory-card__back {
+    font-size: 1rem;
+  }
+}
+
+/* Matched card pop animation */
+@-webkit-keyframes matched-pop {
+  0%   { -webkit-transform: rotateY(180deg) scale(1);    transform: rotateY(180deg) scale(1); }
+  50%  { -webkit-transform: rotateY(180deg) scale(1.15); transform: rotateY(180deg) scale(1.15); }
+  100% { -webkit-transform: rotateY(180deg) scale(1);    transform: rotateY(180deg) scale(1); }
+}
+
+@keyframes matched-pop {
+  0%   { -webkit-transform: rotateY(180deg) scale(1);    transform: rotateY(180deg) scale(1); }
+  50%  { -webkit-transform: rotateY(180deg) scale(1.15); transform: rotateY(180deg) scale(1.15); }
+  100% { -webkit-transform: rotateY(180deg) scale(1);    transform: rotateY(180deg) scale(1); }
+}
+
+.memory-card.is-matched .memory-card__inner {
+  -webkit-animation: matched-pop 0.35s var(--ease-spring, cubic-bezier(0.34, 1.56, 0.64, 1)) forwards;
+  animation: matched-pop 0.35s var(--ease-spring, cubic-bezier(0.34, 1.56, 0.64, 1)) forwards;
+}
+
+/* Shake animation for non-matching pair */
+@-webkit-keyframes shake {
+  0%, 100% { -webkit-transform: rotateY(180deg) translateX(0);  transform: rotateY(180deg) translateX(0); }
+  20%       { -webkit-transform: rotateY(180deg) translateX(-4px); transform: rotateY(180deg) translateX(-4px); }
+  40%       { -webkit-transform: rotateY(180deg) translateX(4px);  transform: rotateY(180deg) translateX(4px); }
+  60%       { -webkit-transform: rotateY(180deg) translateX(-3px); transform: rotateY(180deg) translateX(-3px); }
+  80%       { -webkit-transform: rotateY(180deg) translateX(3px);  transform: rotateY(180deg) translateX(3px); }
+}
+
+@keyframes shake {
+  0%, 100% { -webkit-transform: rotateY(180deg) translateX(0);  transform: rotateY(180deg) translateX(0); }
+  20%       { -webkit-transform: rotateY(180deg) translateX(-4px); transform: rotateY(180deg) translateX(-4px); }
+  40%       { -webkit-transform: rotateY(180deg) translateX(4px);  transform: rotateY(180deg) translateX(4px); }
+  60%       { -webkit-transform: rotateY(180deg) translateX(-3px); transform: rotateY(180deg) translateX(-3px); }
+  80%       { -webkit-transform: rotateY(180deg) translateX(3px);  transform: rotateY(180deg) translateX(3px); }
+}
+
+.memory-card.is-wrong .memory-card__inner {
+  -webkit-animation: shake 0.4s ease forwards;
+  animation: shake 0.4s ease forwards;
+  border-color: var(--color-error);
+}
+
+.memory-card.is-wrong .memory-card__front {
+  border-color: var(--color-error);
+  box-shadow: 0 0 8px rgba(255, 51, 85, 0.5);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .memory-card__inner {
+    -webkit-transition: none;
+    transition: none;
+  }
+
+  .memory-card.is-matched .memory-card__inner,
+  .memory-card.is-wrong .memory-card__inner {
+    -webkit-animation: none;
+    animation: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Responsive — Hard mode on narrow screens uses 4-column layout already.
+   On medium screens switch hard mode to 5 or 6 columns.
+   -------------------------------------------------------------------------- */
+@media (min-width: 600px) and (max-width: 767px) {
+  .memory-board--hard {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .memory-board--hard {
+    grid-template-columns: repeat(8, 1fr);
+  }
+}
+
+/* Small cards on hard mode — reduce gap */
+@media (max-width: 767px) {
+  .memory-board {
+    gap: 8px;
+  }
+}

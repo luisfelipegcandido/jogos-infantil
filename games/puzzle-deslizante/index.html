@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Quebra-Cabeça Deslizante — Deslize as peças e monte o quebra-cabeça numérico! Catálogo de Jogos Infantil." />
+  <title>Quebra-Cabeça Deslizante — Catálogo de Jogos Infantil</title>
+  <!-- Global styles (shared template) -->
+  <link rel="stylesheet" href="../../css/style.css" />
+  <!-- Game-specific styles -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="game-page">
+
+  <!-- =====================================================================
+       Top bar — back button + game title (shared template)
+       ===================================================================== -->
+  <div class="game-page__topbar" role="banner">
+    <a
+      class="game-page__back-btn"
+      href="../../index.html#catalogo"
+      aria-label="Voltar ao Catálogo"
+    >
+      <span aria-hidden="true">←</span>
+      Voltar ao Catálogo
+    </a>
+    <span class="game-page__topbar-title" aria-hidden="true">Quebra-Cabeça Deslizante</span>
+  </div>
+
+  <!-- =====================================================================
+       Game header — title / category / description (shared template)
+       ===================================================================== -->
+  <header class="game-page__header">
+    <span class="game-page__category" aria-label="Categoria: Quebra-Cabeça">
+      <span aria-hidden="true">🧩</span>
+      Quebra-Cabeça
+    </span>
+    <h1 class="game-page__title">Quebra-Cabeça Deslizante</h1>
+    <p class="game-page__description">Deslize as peças e monte o quebra-cabeça numérico!</p>
+  </header>
+
+  <!-- =====================================================================
+       Loading indicator (shared template — visible until game is ready)
+       ===================================================================== -->
+  <div
+    class="game-page__loading"
+    id="game-loading"
+    role="status"
+    aria-label="Carregando jogo"
+    aria-live="polite"
+  >
+    <div class="loading-spinner" aria-hidden="true">
+      <span class="loading-spinner__dot"></span>
+      <span class="loading-spinner__dot"></span>
+      <span class="loading-spinner__dot"></span>
+    </div>
+    <span>Carregando…</span>
+  </div>
+
+  <!-- =====================================================================
+       Main game area
+       ===================================================================== -->
+  <main class="game-page__container" aria-label="Área do Quebra-Cabeça Deslizante">
+
+    <!-- Victory overlay -->
+    <div
+      class="puzzle-overlay hidden"
+      id="overlay-victory"
+      role="alertdialog"
+      aria-modal="true"
+      aria-label="Parabéns, você venceu!"
+    >
+      <div class="victory-content">
+        <div class="victory-icon" aria-hidden="true">🏆</div>
+        <h2 class="overlay-title overlay-title--victory">Parabéns!</h2>
+        <p class="overlay-subtitle">Você resolveu o quebra-cabeça!</p>
+        <p class="overlay-score">
+          Movimentos: <strong id="final-moves">0</strong>
+        </p>
+        <button class="btn-restart" id="btn-restart" autofocus>
+          Jogar Novamente
+        </button>
+      </div>
+    </div>
+
+    <!-- Puzzle game wrapper -->
+    <div class="puzzle-game" id="puzzle-game">
+
+      <!-- HUD: move counter -->
+      <div class="puzzle-hud" aria-live="polite" aria-atomic="true">
+        <div class="hud-item">
+          <span class="hud-label">Movimentos</span>
+          <span class="hud-value" id="hud-moves">0</span>
+        </div>
+        <button class="btn-new-game" id="btn-new-game" aria-label="Novo jogo — embaralhar peças">
+          🔀 Novo Jogo
+        </button>
+      </div>
+
+      <!-- Puzzle board — 3×3 grid populated by game.js -->
+      <div
+        class="puzzle-board"
+        id="puzzle-board"
+        role="grid"
+        aria-label="Tabuleiro do quebra-cabeça 3 por 3"
+        aria-rowcount="3"
+        aria-colcount="3"
+      ></div>
+
+      <!-- Keyboard hint -->
+      <p class="puzzle-hint" aria-hidden="true">
+        💡 Use as <strong>setas do teclado</strong> ou <strong>clique</strong> para mover as peças
+      </p>
+
+    </div><!-- /.puzzle-game -->
+
+  </main><!-- /.game-page__container -->
+
+  <!-- =====================================================================
+       Footer back link (shared template)
+       ===================================================================== -->
+  <div class="game-page__footer">
+    <a
+      class="btn btn--secondary"
+      href="../../index.html#catalogo"
+      aria-label="Voltar ao Catálogo de Jogos"
+    >
+      <span aria-hidden="true">←</span>
+      Voltar ao Catálogo
+    </a>
+  </div>
+
+  <script src="game.js" defer></script>
+</body>
+</html>

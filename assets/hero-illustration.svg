@@ -1,0 +1,150 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="600" height="400" role="presentation" aria-hidden="true">
+  <defs>
+    <!-- Background gradient -->
+    <radialGradient id="bgGrad" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#1a0a2e"/>
+      <stop offset="100%" stop-color="#0f0f1a"/>
+    </radialGradient>
+    <!-- Planet gradient -->
+    <radialGradient id="planetGrad" cx="40%" cy="35%" r="60%">
+      <stop offset="0%" stop-color="#b44aff"/>
+      <stop offset="60%" stop-color="#7700cc"/>
+      <stop offset="100%" stop-color="#3d006e"/>
+    </radialGradient>
+    <!-- Ring gradient -->
+    <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00d4ff" stop-opacity="0.2"/>
+      <stop offset="30%" stop-color="#00d4ff" stop-opacity="0.9"/>
+      <stop offset="70%" stop-color="#b44aff" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#00d4ff" stop-opacity="0.1"/>
+    </linearGradient>
+    <!-- Rocket flame gradient -->
+    <linearGradient id="flameGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#7fff00"/>
+      <stop offset="60%" stop-color="#ffaa00"/>
+      <stop offset="100%" stop-color="#ff3300" stop-opacity="0"/>
+    </linearGradient>
+    <!-- Glow filter -->
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="600" height="400" fill="url(#bgGrad)"/>
+
+  <!-- Stars — small dots scattered around -->
+  <g fill="#ffffff" opacity="0.7">
+    <circle cx="30"  cy="25"  r="1.2"/>
+    <circle cx="85"  cy="60"  r="0.8"/>
+    <circle cx="150" cy="15"  r="1.5"/>
+    <circle cx="200" cy="80"  r="0.9"/>
+    <circle cx="260" cy="30"  r="1.1"/>
+    <circle cx="340" cy="10"  r="1.3"/>
+    <circle cx="410" cy="50"  r="0.7"/>
+    <circle cx="480" cy="20"  r="1.4"/>
+    <circle cx="540" cy="70"  r="1.0"/>
+    <circle cx="580" cy="35"  r="0.9"/>
+    <circle cx="50"  cy="120" r="1.1"/>
+    <circle cx="110" cy="160" r="0.8"/>
+    <circle cx="170" cy="200" r="1.3"/>
+    <circle cx="20"  cy="280" r="0.9"/>
+    <circle cx="70"  cy="350" r="1.2"/>
+    <circle cx="130" cy="310" r="0.7"/>
+    <circle cx="560" cy="140" r="1.0"/>
+    <circle cx="590" cy="200" r="0.8"/>
+    <circle cx="520" cy="300" r="1.2"/>
+    <circle cx="570" cy="360" r="0.9"/>
+    <circle cx="440" cy="380" r="1.1"/>
+    <circle cx="380" cy="360" r="0.7"/>
+    <circle cx="310" cy="380" r="1.3"/>
+    <circle cx="250" cy="340" r="0.9"/>
+  </g>
+
+  <!-- Bright star sparkles -->
+  <g fill="#00d4ff" filter="url(#glow)" opacity="0.9">
+    <polygon points="45,180 47,186 53,186 48,190 50,196 45,192 40,196 42,190 37,186 43,186" transform="scale(0.7) translate(20,80)"/>
+    <polygon points="45,180 47,186 53,186 48,190 50,196 45,192 40,196 42,190 37,186 43,186" transform="scale(0.5) translate(980,500)"/>
+  </g>
+  <g fill="#7fff00" filter="url(#glow)" opacity="0.85">
+    <polygon points="45,180 47,186 53,186 48,190 50,196 45,192 40,196 42,190 37,186 43,186" transform="scale(0.55) translate(200,440)"/>
+  </g>
+
+  <!-- Planet ring (back half — behind planet) -->
+  <ellipse cx="360" cy="220" rx="160" ry="28" fill="none" stroke="url(#ringGrad)" stroke-width="12" opacity="0.35" clip-path="url(#ringClipBack)"/>
+
+  <!-- Planet body -->
+  <circle cx="360" cy="200" r="110" fill="url(#planetGrad)" filter="url(#softGlow)"/>
+
+  <!-- Planet surface detail lines -->
+  <ellipse cx="360" cy="185" rx="85" ry="18" fill="none" stroke="#cc44ff" stroke-width="2" opacity="0.4"/>
+  <ellipse cx="360" cy="210" rx="100" ry="22" fill="none" stroke="#9900dd" stroke-width="1.5" opacity="0.3"/>
+  <circle cx="310" cy="170" r="18" fill="#9900dd" opacity="0.35"/>
+  <circle cx="395" cy="230" r="12" fill="#cc44ff" opacity="0.2"/>
+
+  <!-- Planet ring (front half — over planet) -->
+  <ellipse cx="360" cy="220" rx="160" ry="28" fill="none" stroke="url(#ringGrad)" stroke-width="12" opacity="0.85">
+    <clipPath id="ringClipFront">
+      <rect x="0" y="220" width="600" height="200"/>
+    </clipPath>
+  </ellipse>
+  <!-- Simplified front ring arc using a path -->
+  <path d="M 200 220 Q 360 248 520 220" fill="none" stroke="#00d4ff" stroke-width="10" opacity="0.7" stroke-linecap="round"/>
+
+  <!-- Rocket -->
+  <g transform="translate(130, 110) rotate(-35)" filter="url(#glow)">
+    <!-- Rocket body -->
+    <ellipse cx="0" cy="0" rx="12" ry="28" fill="#e8e8f0"/>
+    <!-- Rocket nose cone -->
+    <path d="M -12 -12 Q 0 -40 12 -12 Z" fill="#00d4ff"/>
+    <!-- Rocket window -->
+    <circle cx="0" cy="-5" r="6" fill="#0f0f1a" stroke="#00d4ff" stroke-width="2"/>
+    <circle cx="0" cy="-5" r="3" fill="#00d4ff" opacity="0.6"/>
+    <!-- Rocket fins -->
+    <path d="M -12 16 L -22 30 L -8 24 Z" fill="#b44aff"/>
+    <path d="M  12 16 L  22 30 L  8 24 Z" fill="#b44aff"/>
+    <!-- Rocket flame -->
+    <ellipse cx="0" cy="34" rx="8" ry="16" fill="url(#flameGrad)" opacity="0.9"/>
+    <ellipse cx="0" cy="36" rx="5" ry="10" fill="#ffffff" opacity="0.5"/>
+  </g>
+
+  <!-- Asteroid 1 (large) -->
+  <g transform="translate(70, 280)">
+    <ellipse cx="0" cy="0" rx="28" ry="22" fill="#3a2a1a" stroke="#5a4a2a" stroke-width="2"/>
+    <circle cx="-8"  cy="-5"  r="4" fill="#2a1a0a"/>
+    <circle cx="10"  cy="5"   r="6" fill="#2a1a0a"/>
+    <circle cx="-2"  cy="10"  r="3" fill="#2a1a0a"/>
+  </g>
+
+  <!-- Asteroid 2 (small) -->
+  <g transform="translate(500, 120)">
+    <ellipse cx="0" cy="0" rx="18" ry="14" fill="#3a2a1a" stroke="#5a4a2a" stroke-width="1.5"/>
+    <circle cx="-5" cy="-3" r="3" fill="#2a1a0a"/>
+    <circle cx="6"  cy="4"  r="4" fill="#2a1a0a"/>
+  </g>
+
+  <!-- Asteroid 3 (tiny) -->
+  <g transform="translate(210, 340)">
+    <ellipse cx="0" cy="0" rx="10" ry="8" fill="#3a2a1a" stroke="#5a4a2a" stroke-width="1"/>
+    <circle cx="-3" cy="-2" r="2" fill="#2a1a0a"/>
+  </g>
+
+  <!-- Small star sparkle accents -->
+  <g fill="#7fff00" opacity="0.9" filter="url(#glow)">
+    <path d="M 490 310 L 493 318 L 501 318 L 495 323 L 497 331 L 490 326 L 483 331 L 485 323 L 479 318 L 487 318 Z" transform="scale(0.6) translate(325,207)"/>
+  </g>
+  <g fill="#00d4ff" opacity="0.8" filter="url(#glow)">
+    <path d="M 490 310 L 493 318 L 501 318 L 495 323 L 497 331 L 490 326 L 483 331 L 485 323 L 479 318 L 487 318 Z" transform="scale(0.45) translate(45,490)"/>
+  </g>
+</svg>

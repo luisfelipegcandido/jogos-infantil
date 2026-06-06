@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="presentation" aria-hidden="true">
+  <defs>
+    <linearGradient id="rocketBodyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e8e8f0"/>
+      <stop offset="100%" stop-color="#9898b0"/>
+    </linearGradient>
+    <linearGradient id="rocketFlameGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#7fff00"/>
+      <stop offset="50%" stop-color="#ffaa00"/>
+      <stop offset="100%" stop-color="#ff4400" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="rocketGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Rocket flame -->
+  <ellipse cx="32" cy="54" rx="7" ry="12" fill="url(#rocketFlameGrad)" filter="url(#rocketGlow)"/>
+  <ellipse cx="32" cy="55" rx="4"  ry="7"  fill="#ffffff" opacity="0.5"/>
+
+  <!-- Left fin -->
+  <path d="M 22 44 L 14 54 L 22 50 Z" fill="#b44aff"/>
+  <!-- Right fin -->
+  <path d="M 42 44 L 50 54 L 42 50 Z" fill="#b44aff"/>
+
+  <!-- Rocket body -->
+  <rect x="22" y="18" width="20" height="32" rx="10" ry="10" fill="url(#rocketBodyGrad)"/>
+
+  <!-- Nose cone -->
+  <path d="M 22 24 Q 32 6 42 24 Z" fill="#00d4ff"/>
+
+  <!-- Window -->
+  <circle cx="32" cy="30" r="7"  fill="#0f0f1a" stroke="#00d4ff" stroke-width="2"/>
+  <circle cx="32" cy="30" r="3.5" fill="#00d4ff" opacity="0.7"/>
+  <!-- Window shine -->
+  <circle cx="30" cy="28" r="1.5" fill="#ffffff" opacity="0.5"/>
+</svg>

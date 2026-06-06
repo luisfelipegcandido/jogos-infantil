@@ -3,35 +3,75 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Nave Espacial — Destrua asteroides e salve a galáxia! Jogo de ação no Catálogo de Jogos Infantil." />
   <title>Nave Espacial — Catálogo de Jogos Infantil</title>
+  <!-- Global styles (shared template) -->
   <link rel="stylesheet" href="../../css/style.css" />
+  <!-- Game-specific styles -->
   <link rel="stylesheet" href="style.css" />
 </head>
 <body class="game-page">
 
-  <!-- Back navigation -->
-  <header class="game-header">
-    <a href="../../index.html#catalogo" class="btn-back" aria-label="Voltar ao catálogo">
-      ← Voltar ao Catálogo
+  <!-- =====================================================================
+       Top bar — back button + game title (shared template)
+       ===================================================================== -->
+  <div class="game-page__topbar" role="banner">
+    <a
+      class="game-page__back-btn"
+      href="../../index.html#catalogo"
+      aria-label="Voltar ao Catálogo"
+    >
+      <span aria-hidden="true">←</span>
+      Voltar ao Catálogo
     </a>
-    <div class="game-header-info">
-      <h1>Nave Espacial</h1>
-      <span class="category-badge">🚀 Ação</span>
-      <p class="game-description">Destrua asteroides e salve a galáxia!</p>
-    </div>
+    <span class="game-page__topbar-title" aria-hidden="true">Nave Espacial</span>
+  </div>
+
+  <!-- =====================================================================
+       Game header — title / category / description (shared template)
+       ===================================================================== -->
+  <header class="game-page__header">
+    <span class="game-page__category" aria-label="Categoria: Ação">
+      <span aria-hidden="true">🚀</span>
+      Ação
+    </span>
+    <h1 class="game-page__title">Nave Espacial</h1>
+    <p class="game-page__description">Destrua asteroides e salve a galáxia!</p>
   </header>
 
-  <!-- Main game area -->
-  <main class="game-container" aria-label="Área do jogo">
+  <!-- =====================================================================
+       Loading indicator (shared template — visible until game is ready)
+       ===================================================================== -->
+  <div
+    class="game-page__loading"
+    id="game-loading"
+    role="status"
+    aria-label="Carregando jogo"
+    aria-live="polite"
+  >
+    <div class="loading-spinner" aria-hidden="true">
+      <span class="loading-spinner__dot"></span>
+      <span class="loading-spinner__dot"></span>
+      <span class="loading-spinner__dot"></span>
+    </div>
+    <span>Carregando…</span>
+  </div>
+
+  <!-- =====================================================================
+       Main game area
+       ===================================================================== -->
+  <main class="game-page__container" aria-label="Área do jogo Nave Espacial">
 
     <div class="canvas-wrapper" role="region" aria-label="Canvas do jogo Nave Espacial">
 
       <!-- Game canvas -->
-      <canvas id="game-canvas"
-              width="480"
-              height="640"
-              aria-label="Jogo Nave Espacial"
-              role="img">
+      <canvas
+        id="game-canvas"
+        width="480"
+        height="640"
+        aria-label="Jogo Nave Espacial"
+        role="img"
+      >
         Seu navegador não suporta o elemento canvas. Por favor, atualize-o para jogar.
       </canvas>
 
@@ -48,17 +88,17 @@
         </div>
       </div>
 
-      <!-- Loading overlay -->
-      <div class="game-overlay" id="overlay-loading" role="status" aria-label="Carregando jogo">
-        <div class="loading-spinner" aria-hidden="true"></div>
-        <p class="loading-text">Carregando…</p>
-      </div>
-
       <!-- Game Over overlay -->
-      <div class="game-overlay hidden" id="overlay-gameover" role="alertdialog" aria-modal="true" aria-label="Fim de jogo">
+      <div
+        class="game-overlay hidden"
+        id="overlay-gameover"
+        role="alertdialog"
+        aria-modal="true"
+        aria-label="Fim de jogo"
+      >
         <h2 class="overlay-title">Game Over</h2>
         <p class="overlay-score">
-          Pontuação final:<br>
+          Pontuação final:<br />
           <strong id="final-score">0</strong>
         </p>
         <button class="btn-restart" id="btn-restart" autofocus>
@@ -82,12 +122,25 @@
         <button class="btn-touch" id="btn-down"  data-dir="down"  aria-label="Mover para baixo">▼</button>
         <div class="dpad-spacer"></div>
       </div>
-
       <!-- Fire button -->
       <button class="btn-touch btn-fire" id="btn-fire" aria-label="Atirar">🔥</button>
     </div>
 
-  </main>
+  </main><!-- /.game-page__container -->
+
+  <!-- =====================================================================
+       Footer back link (shared template)
+       ===================================================================== -->
+  <div class="game-page__footer">
+    <a
+      class="btn btn--secondary"
+      href="../../index.html#catalogo"
+      aria-label="Voltar ao Catálogo de Jogos"
+    >
+      <span aria-hidden="true">←</span>
+      Voltar ao Catálogo
+    </a>
+  </div>
 
   <script src="game.js" defer></script>
 </body>
