@@ -20,6 +20,10 @@
    -------------------------------------------------------------------------- */
 .game-overlay {
   position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   inset: 0;
   background: var(--color-bg-overlay);
   display: flex;
@@ -31,6 +35,13 @@
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   padding: 24px;
+}
+
+/* Flex gap fallback for Safari 14.0 */
+@supports not (gap: 1px) {
+  .game-overlay > * + * {
+    margin-top: 16px;
+  }
 }
 
 .game-overlay.hidden {
@@ -79,6 +90,13 @@
   justify-content: center;
 }
 
+/* Flex gap fallback for Safari 14.0 */
+@supports not (gap: 1px) {
+  .difficulty-buttons > * + * {
+    margin-left: 20px;
+  }
+}
+
 .btn-difficulty {
   display: flex;
   flex-direction: column;
@@ -96,6 +114,13 @@
   min-height: 120px;
   transition: background 0.2s, box-shadow 0.2s, transform 0.1s, border-color 0.2s;
   box-shadow: 0 4px 16px var(--color-purple-glow);
+}
+
+/* Flex gap fallback for Safari 14.0 */
+@supports not (gap: 1px) {
+  .btn-difficulty > * + * {
+    margin-top: 6px;
+  }
 }
 
 .btn-difficulty:hover,
@@ -135,6 +160,13 @@
   gap: 12px;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+/* Flex gap fallback for Safari 14.0 */
+@supports not (gap: 1px) {
+  .victory-buttons > * + * {
+    margin-left: 12px;
+  }
 }
 
 .btn-restart {
@@ -201,6 +233,13 @@
   gap: 20px;
 }
 
+/* Flex gap fallback for Safari 14.0 */
+@supports not (gap: 1px) {
+  .memory-game > * + * {
+    margin-top: 20px;
+  }
+}
+
 /* --------------------------------------------------------------------------
    HUD
    -------------------------------------------------------------------------- */
@@ -216,6 +255,13 @@
   justify-content: space-around;
 }
 
+/* Flex gap fallback for Safari 14.0 */
+@supports not (gap: 1px) {
+  .memory-hud > * + * {
+    margin-left: 24px;
+  }
+}
+
 .hud-item {
   display: flex;
   flex-direction: column;
@@ -223,8 +269,15 @@
   gap: 2px;
 }
 
+/* Flex gap fallback for Safari 14.0 */
+@supports not (gap: 1px) {
+  .hud-item > * + * {
+    margin-top: 2px;
+  }
+}
+
 .hud-label {
-  font-size: 0.75rem;
+  font-size: 0.875rem;  /* HUD meta-label — small but acceptable as non-body UI chrome */
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -335,6 +388,10 @@
 .memory-card__back,
 .memory-card__front {
   position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   inset: 0;
   border-radius: 10px;
   display: flex;

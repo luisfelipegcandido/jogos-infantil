@@ -21,6 +21,10 @@
    -------------------------------------------------------------------------- */
 .game-overlay {
   position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   inset: 0;
   background: var(--color-bg-overlay);
   display: flex;
@@ -32,6 +36,13 @@
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   padding: 24px;
+}
+
+/* Flex gap fallback for Safari 14.0 */
+@supports not (gap: 1px) {
+  .game-overlay > * + * {
+    margin-top: 16px;
+  }
 }
 
 .game-overlay.hidden {
@@ -99,6 +110,13 @@
   padding: 16px 24px;
 }
 
+/* Flex gap fallback for Safari 14.0 */
+@supports not (gap: 1px) {
+  .quiz-rules > * + * {
+    margin-top: 8px;
+  }
+}
+
 .quiz-rules li {
   font-size: 1rem;
   color: var(--color-text);
@@ -148,6 +166,13 @@
   margin: 0;
 }
 
+/* Flex gap fallback for Safari 14.0 */
+@supports not (gap: 1px) {
+  .result-score > * + * {
+    margin-left: 10px;
+  }
+}
+
 #result-correct {
   font-family: var(--font-heading);
   font-size: 3rem;
@@ -168,7 +193,7 @@
 }
 
 .result-score-label {
-  font-size: 1rem;
+  font-size: 1rem;   /* min 16px — Requisito 9.3 */
   color: var(--color-text-muted);
 }
 
@@ -225,6 +250,13 @@
   padding-top: 8px;
 }
 
+/* Flex gap fallback for Safari 14.0 */
+@supports not (gap: 1px) {
+  .quiz-game > * + * {
+    margin-top: 20px;
+  }
+}
+
 /* --------------------------------------------------------------------------
    Progress Bar
    -------------------------------------------------------------------------- */
@@ -235,11 +267,18 @@
   gap: 8px;
 }
 
+/* Flex gap fallback for Safari 14.0 */
+@supports not (gap: 1px) {
+  .quiz-progress-wrapper > * + * {
+    margin-top: 8px;
+  }
+}
+
 .quiz-progress-info {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 0.875rem;
+  font-size: 1rem;   /* min 16px — Requisito 9.3 */
   color: var(--color-text-muted);
 }
 
@@ -305,6 +344,10 @@
 
 .quiz-timer-count {
   position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   inset: 0;
   display: flex;
   align-items: center;
@@ -373,6 +416,13 @@
   appearance: none;
 }
 
+/* Flex gap fallback for Safari 14.0 */
+@supports not (gap: 1px) {
+  .quiz-option > * + * {
+    margin-left: 12px;
+  }
+}
+
 .quiz-option:hover:not(:disabled) {
   background: var(--color-bg-elevated);
   border-color: var(--color-green);
@@ -405,7 +455,7 @@
   background: var(--color-bg-elevated);
   border: 1px solid var(--color-border);
   font-family: var(--font-heading);
-  font-size: 0.875rem;
+  font-size: 1rem;   /* min 16px — Requisito 9.3; was 0.875rem */
   color: var(--color-text-muted);
   flex-shrink: 0;
   transition: background 0.15s, border-color 0.15s;
@@ -501,6 +551,13 @@
   border: 2px solid transparent;
 }
 
+/* Flex gap fallback for Safari 14.0 */
+@supports not (gap: 1px) {
+  .quiz-feedback > * + * {
+    margin-left: 10px;
+  }
+}
+
 .quiz-feedback.hidden {
   display: none;
 }
@@ -545,7 +602,7 @@
 
   .quiz-option {
     padding: 12px 14px;
-    font-size: 0.9375rem;
+    font-size: 1rem;  /* keep min 16px — Requisito 9.3; was 0.9375rem */
   }
 
   .overlay-title {
@@ -558,7 +615,7 @@
     width: 24px;
     height: 24px;
     min-width: 24px;
-    font-size: 0.75rem;
+    font-size: 1rem;  /* keep min 16px — Requisito 9.3 */
   }
 
   .quiz-question-text {

@@ -30,6 +30,13 @@ body.game-page {
   flex-wrap: wrap;
 }
 
+/* Flex gap fallback for Safari 14.0 */
+@supports not (gap: 1px) {
+  .game-header > * + * {
+    margin-left: 16px;
+  }
+}
+
 .btn-back {
   display: inline-flex;
   align-items: center;
@@ -48,6 +55,13 @@ body.game-page {
   transition: background 0.2s, border-color 0.2s, color 0.2s;
   white-space: nowrap;
   flex-shrink: 0;
+}
+
+/* Flex gap fallback for Safari 14.0 */
+@supports not (gap: 1px) {
+  .btn-back > * + * {
+    margin-left: 6px;
+  }
 }
 
 .btn-back:hover,
@@ -79,7 +93,7 @@ body.game-page {
   border: 1px solid var(--color-green);
   border-radius: 20px;
   padding: 2px 10px;
-  font-size: 0.75rem;
+  font-size: 0.875rem;  /* badge label — uppercase bold, decorative; acceptable <16px per WCAG for non-body UI */
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -111,6 +125,10 @@ body.game-page {
    -------------------------------------------------------------------------- */
 .puzzle-overlay {
   position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   inset: 0;
   background: var(--color-bg-overlay);
   display: flex;
@@ -122,6 +140,13 @@ body.game-page {
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   padding: 24px;
+}
+
+/* Flex gap fallback for Safari 14.0 */
+@supports not (gap: 1px) {
+  .puzzle-overlay > * + * {
+    margin-top: 16px;
+  }
 }
 
 .puzzle-overlay.hidden {
@@ -141,6 +166,13 @@ body.game-page {
   max-width: 400px;
   width: 100%;
   text-align: center;
+}
+
+/* Flex gap fallback for Safari 14.0 */
+@supports not (gap: 1px) {
+  .victory-content > * + * {
+    margin-top: 16px;
+  }
 }
 
 .victory-icon {
@@ -223,7 +255,7 @@ body.game-page {
 }
 
 .loading-text {
-  font-size: 1rem;
+  font-size: 1rem;  /* min 16px — Requisito 9.3 */
   color: var(--color-text-muted);
   font-family: var(--font-body);
   margin: 0;
@@ -245,6 +277,13 @@ body.game-page {
   max-width: 400px;
 }
 
+/* Flex gap fallback for Safari 14.0 */
+@supports not (gap: 1px) {
+  .puzzle-game > * + * {
+    margin-top: 20px;
+  }
+}
+
 /* --------------------------------------------------------------------------
    HUD
    -------------------------------------------------------------------------- */
@@ -260,6 +299,13 @@ body.game-page {
   gap: 16px;
 }
 
+/* Flex gap fallback for Safari 14.0 */
+@supports not (gap: 1px) {
+  .puzzle-hud > * + * {
+    margin-left: 16px;
+  }
+}
+
 .hud-item {
   display: flex;
   flex-direction: column;
@@ -267,8 +313,15 @@ body.game-page {
   gap: 2px;
 }
 
+/* Flex gap fallback for Safari 14.0 */
+@supports not (gap: 1px) {
+  .hud-item > * + * {
+    margin-top: 2px;
+  }
+}
+
 .hud-label {
-  font-size: 0.75rem;
+  font-size: 0.875rem;  /* HUD meta-label — small but acceptable as non-body UI chrome */
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -293,13 +346,20 @@ body.game-page {
   border-radius: 8px;
   padding: 8px 14px;
   font-family: var(--font-body);
-  font-size: 0.875rem;
+  font-size: 1rem;   /* min 16px — Requisito 9.3; was 0.875rem */
   font-weight: 600;
   min-height: 44px;
   cursor: pointer;
   transition: background 0.2s, border-color 0.2s, color 0.2s;
   white-space: nowrap;
   flex-shrink: 0;
+}
+
+/* Flex gap fallback for Safari 14.0 */
+@supports not (gap: 1px) {
+  .btn-new-game > * + * {
+    margin-left: 6px;
+  }
 }
 
 .btn-new-game:hover,
@@ -434,7 +494,7 @@ body.game-page {
    Keyboard hint
    -------------------------------------------------------------------------- */
 .puzzle-hint {
-  font-size: 0.875rem;
+  font-size: 1rem;  /* min 16px — Requisito 9.3; was 0.875rem */
   color: var(--color-text-muted);
   text-align: center;
   line-height: 1.5;

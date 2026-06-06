@@ -59,16 +59,33 @@ const Router = (function () {
    * Scrolls the viewport to the requested element.
    * If the element exists, it uses scrollIntoView; otherwise scrolls to top.
    *
+   * Cross-browser note:
+   *   - `scrollIntoView({ behavior: 'smooth' })` is NOT supported in
+   *     Safari < 15.1. We use a try/catch fallback to ensure the scroll
+   *     always happens (instantly in Safari 14, smoothly in other browsers).
+   *   - `window.scrollTo({ behavior: 'smooth' })` is also unsupported in
+   *     Safari < 14 — same fallback strategy applied.
+   *
    * @param {string} sectionId
    */
   function _scrollToSection(sectionId) {
     // Small timeout ensures the section is visible before scrolling
     requestAnimationFrame(function () {
-      const el = document.getElementById(sectionId);
+      var el = document.getElementById(sectionId);
       if (el) {
-        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        try {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } catch (e) {
+          // Safari 14 and older do not support the options object —
+          // fall back to instant scroll to element position
+          el.scrollIntoView(true);
+        }
       } else {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        try {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } catch (e) {
+          window.scrollTo(0, 0);
+        }
       }
     });
   }

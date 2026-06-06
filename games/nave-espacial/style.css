@@ -68,6 +68,13 @@
   align-items: center;
 }
 
+/* Flex gap fallback for Safari 14.0 */
+@supports not (gap: 1px) {
+  .hud-lives > * + * {
+    margin-left: 4px;
+  }
+}
+
 .hud-lives .heart {
   font-size: 1.25rem;
   filter: drop-shadow(0 0 4px rgba(255, 51, 85, 0.6));
@@ -98,6 +105,13 @@
   border-radius: 6px;
   -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
+}
+
+/* Flex gap fallback for Safari 14.0 */
+@supports not (gap: 1px) {
+  .game-overlay > * + * {
+    margin-top: 16px;
+  }
 }
 
 .game-overlay.hidden {
@@ -166,7 +180,7 @@
 }
 
 .loading-text {
-  font-size: 1rem;
+  font-size: 1rem;  /* min 16px — Requisito 9.3 */
   color: var(--color-text-muted);
   font-family: var(--font-body);
   margin: 0;
@@ -186,6 +200,13 @@
   align-items: center;
   justify-content: center;
   width: 100%;
+}
+
+/* Flex gap fallback for Safari 14.0 (gap in flex added in Safari 14.1) */
+@supports not (gap: 1px) {
+  .controls-touch > * + * {
+    margin-left: 20px;
+  }
 }
 
 @media (pointer: coarse) {

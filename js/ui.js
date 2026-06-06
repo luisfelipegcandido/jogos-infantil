@@ -140,11 +140,12 @@ const UI = (function () {
     });
 
     // Close mobile menu on viewport resize to desktop width
+    // passive: true — resize listener never calls preventDefault
     window.addEventListener('resize', function () {
       if (window.innerWidth >= 768 && _menuOpen) {
         _closeMenu();
       }
-    });
+    }, { passive: true });
 
     // Highlight initial active link based on current hash / router state
     const initialSection = (typeof Router !== 'undefined')

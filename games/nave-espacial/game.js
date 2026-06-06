@@ -43,6 +43,20 @@ const STAR_COUNT = 80;
    Utility helpers
    ========================================================================== */
 
+/**
+ * Cross-browser timestamp helper.
+ * performance.now() is supported in Chrome 24+, Firefox 15+, Safari 8+, Edge 12+.
+ * All our target browsers support it, but we keep a Date.now() fallback for
+ * robustness in case the page is served in a stripped-down context.
+ *
+ * @returns {number} milliseconds elapsed since page load (or since epoch)
+ */
+function now() {
+  return (typeof performance !== 'undefined' && performance.now)
+    ? performance.now()
+    : Date.now();
+}
+
 /** Simple seeded random-ish helper — uses Math.random() */
 function rand(min, max) {
   return Math.random() * (max - min) + min;
@@ -140,16 +154,18 @@ function init() {
 
   // Responsive canvas: scale to fit screen while maintaining aspect ratio
   resizeCanvas();
-  window.addEventListener('resize', resizeCanvas);
+  // passive: true — resize listener never calls preventDefault
+  window.addEventListener('resize', resizeCanvas, { passive: true });
 
   // Keyboard controls
   document.addEventListener('keydown', onKeyDown);
   document.addEventListener('keyup',   onKeyUp);
 
   // Prevent space from scrolling page
+  // passive: false needed because we call e.preventDefault()
   window.addEventListener('keydown', (e) => {
     if (e.code === 'Space') e.preventDefault();
-  });
+  }, { passive: false });
 
   // Touch / on-screen button controls
   initTouchControls();
@@ -553,9 +569,9 @@ function renderShip() {
   };
 
   // Blinking during invincibility
-  const now = performance.now ? performance.now() : Date.now();
-  if (state.invincibleUntil > now) {
-    if (Math.floor(now / 80) % 2 === 0) return; // blink every 80ms
+  const nowTs = now();
+  if (state.invincibleUntil > nowTs) {
+    if (Math.floor(nowTs / 80) % 2 === 0) return; // blink every 80ms
   }
 
   ctx.save();
@@ -741,14 +757,14 @@ function reset() {
   state.level              = 1;
   state.gameOver           = false;
   state.running            = false;
-  // Use performance.now() so invincibleUntil is relative to real elapsed time.
+  // Use now() helper so invincibleUntil is relative to real elapsed time.
   // Gives a 1.5s grace period at game start so the ship isn't hit immediately.
-  state.invincibleUntil    = performance.now() + INVINCIBLE_DURATION;
+  state.invincibleUntil    = now() + INVINCIBLE_DURATION;
   // Seed spawn/shot timers with current time so the first asteroid doesn't
   // appear in the very first frame (timestamp - 0 would be huge).
-  const now                = performance.now();
-  state.lastAsteroidSpawn  = now;
-  state.lastShot           = now;
+  const nowTs              = now();
+  state.lastAsteroidSpawn  = nowTs;
+  state.lastShot           = nowTs;
   debris.length            = 0;
 
   // Reset input
@@ -809,17 +825,19 @@ function initTouchControls() {
     if (!btn) continue;
 
     // Pointer events (works for both touch and mouse)
+    // passive: false is required because we call e.preventDefault() inside
+    // pointerdown. Passive listeners cannot call preventDefault().
     btn.addEventListener('pointerdown', (e) => {
       e.preventDefault();
       input[dir] = true;
       btn.classList.add('active');
-    });
+    }, { passive: false });
 
     btn.addEventListener('pointerup', (e) => {
       e.preventDefault();
       input[dir] = false;
       btn.classList.remove('active');
-    });
+    }, { passive: false });
 
     btn.addEventListener('pointerleave', (e) => {
       input[dir] = false;

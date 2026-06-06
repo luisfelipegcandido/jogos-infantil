@@ -35,7 +35,7 @@
   - [x] 5.4 Integrar fontes do Google Fonts (Nunito e/ou Fredoka One) com tamanho mínimo de 16px no corpo do texto
   - [x] 5.5 Implementar estilos das seções da página de jogo individual (header com título/categoria/descrição, container do jogo, botão "Voltar ao Catálogo")
 
-- [ ] 6. Política de Privacidade
+- [x] 6. Política de Privacidade
   - [x] 6.1 Implementar o conteúdo da seção `#privacidade` declarando: não coleta de dados, ausência de cookies/analytics, execução local dos jogos, finalidade de entretenimento e data da última atualização
 
 - [x] 7. Jogo — Nave Espacial (Ação)
@@ -67,13 +67,13 @@
   - [x] 11.1 Criar template HTML base para páginas de jogo com: carregamento de `../../css/style.css`, header com título/categoria/descrição, container do jogo, botão "Voltar ao Catálogo" (`../../index.html#catalogo`), e indicador de loading
   - [x] 11.2 Implementar em cada `index.html` de jogo o indicador de loading (spinner visível até o jogo estar pronto para interação)
 
-- [-] 12. Integração final e polimento
+- [x] 12. Integração final e polimento
   - [x] 12.1 Preencher `games/catalog.js` com os metadados dos 4 jogos implementados (id, title, description, category, cover, path, featured)
   - [x] 12.2 Criar imagens de capa (`cover.png`) para cada jogo em seus respectivos diretórios; criar `assets/cover-placeholder.png` para fallback
   - [x] 12.3 Criar `assets/` com ícones e ilustrações vetoriais temáticas (espaço, games, aventura) usados como decoração nas páginas principais
   - [x] 12.4 Verificar caminhos relativos em todos os links, scripts e imagens para compatibilidade com GitHub Pages (subdiretório de repositório)
-  - [-] 12.5 Testar a plataforma nos 4 navegadores alvo (Chrome 90+, Firefox 88+, Safari 14+, Edge 90+) e corrigir inconsistências
-  - [~] 12.6 Executar auditoria de acessibilidade (Lighthouse ou axe): verificar contraste ≥4.5:1, áreas de toque ≥44×44px, fontes ≥16px
+  - [x] 12.5 Testar a plataforma nos 4 navegadores alvo (Chrome 90+, Firefox 88+, Safari 14+, Edge 90+) e corrigir inconsistências
+  - [x] 12.6 Executar auditoria de acessibilidade (Lighthouse ou axe): verificar contraste ≥4.5:1, áreas de toque ≥44×44px, fontes ≥16px
 
 - [ ] 13. Testes
   - [~] 13.1 Configurar ambiente de testes com `fast-check` e um test runner (ex.: Vitest ou Jest) como devDependency

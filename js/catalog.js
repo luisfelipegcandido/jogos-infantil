@@ -391,20 +391,16 @@ const Catalog = (function () {
         const catId = btn.getAttribute('data-category');
 
         if (typeof Router !== 'undefined' && typeof Router.navigate === 'function') {
-          // Listen for the routechange event to apply the filter once the
-          // catalog section is fully visible — more reliable than setTimeout
-          function onRouteChange(e) {
-            if (e.detail && e.detail.section === 'catalogo') {
-              document.removeEventListener('routechange', onRouteChange);
-              filter(catId);
-            }
-          }
-          document.addEventListener('routechange', onRouteChange);
           Router.navigate('catalogo');
+          // Apply the category filter after navigation.
+          // setTimeout(0) defers execution to after the current call stack
+          // clears, ensuring the catalog section is visible in the DOM before
+          // filter() updates card visibility.
+          setTimeout(function () { filter(catId); }, 0);
         } else {
           // Fallback for environments without the Router module
           window.location.hash = '#catalogo';
-          setTimeout(function () { filter(catId); }, 50);
+          setTimeout(function () { filter(catId); }, 0);
         }
       });
     });
