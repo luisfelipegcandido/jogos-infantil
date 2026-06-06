@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Quebra-Cabeça dos Animais — Monte a imagem do animal corretamente! Catálogo de Jogos Infantil." />
   <title>Quebra-Cabeça dos Animais — Catálogo de Jogos Infantil</title>
-  <link rel="stylesheet" href="../../css/style.css">
-  <link rel="stylesheet" href="style.css">
+  <!-- Global styles (shared template) -->
+  <link rel="stylesheet" href="../../css/style.css" />
+  <!-- Game-specific styles -->
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body class="game-page">
+
+  <!-- =====================================================================
+       Top bar — back button + game title (shared template)
+       ===================================================================== -->
   <div class="game-page__topbar" role="banner">
     <a
       class="game-page__back-btn"
@@ -20,15 +26,23 @@
     </a>
     <span class="game-page__topbar-title" aria-hidden="true">Quebra-Cabeça dos Animais</span>
   </div>
+
+  <!-- =====================================================================
+       Game header — title / category / description (shared template)
+       ===================================================================== -->
   <header class="game-page__header">
     <span class="game-page__category" aria-label="Categoria: Quebra-Cabeça">
       <span aria-hidden="true">🧩</span>
       Quebra-Cabeça
     </span>
     <h1 class="game-page__title">Quebra-Cabeça dos Animais</h1>
-    <p class="game-page__description">Monte a imagem do animal corretamente.</p>
+    <p class="game-page__description">Monte a imagem do animal corretamente!</p>
   </header>
-  <!-- <div
+
+  <!-- =====================================================================
+       Loading indicator (shared template — visible until game is ready)
+       ===================================================================== -->
+  <div
     class="game-page__loading"
     id="game-loading"
     role="status"
@@ -41,25 +55,94 @@
       <span class="loading-spinner__dot"></span>
     </div>
     <span>Carregando…</span>
-  </div> -->
+  </div>
 
-  <main class="game-page__container" aria-label="Quebra-Cabeça dos Animais">
-    <div class="hud">
-      <span>Tentativas: <strong id="moves">0</strong></span>
-      <button id="new-game">
-        🔀 Novo Jogo
-      </button>
-    </div>
-    <div id="board" class="board"></div>
-    <div id="victory" class="victory hidden">
-      <h2>🎉 Muito Bem!</h2>
-      <p>Você completou o quebra-cabeça.</p>
-      <button id="play-again">
-        Jogar Novamente
-      </button>
-    </div>
-  </main>
+  <!-- =====================================================================
+       Main game area
+       ===================================================================== -->
+  <main class="game-page__container" aria-label="Área do jogo Quebra-Cabeça dos Animais">
 
+    <!-- Difficulty selection screen -->
+    <div
+      class="game-overlay"
+      id="overlay-difficulty"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Escolha a dificuldade"
+    >
+      <h2 class="overlay-title">Quebra-Cabeça dos Animais</h2>
+      <p class="overlay-subtitle">Escolha a dificuldade para começar:</p>
+      <div class="difficulty-buttons">
+        <button class="btn-difficulty" id="btn-easy" aria-label="Jogar no modo fácil — grade 3×3">
+          <span aria-hidden="true">😊</span>
+          Fácil
+          <small>3 × 3</small>
+        </button>
+        <button class="btn-difficulty btn-difficulty--hard" id="btn-hard" aria-label="Jogar no modo difícil — grade 4×4">
+          <span aria-hidden="true">🔥</span>
+          Difícil
+          <small>4 × 4</small>
+        </button>
+      </div>
+    </div>
+
+    <!-- Victory overlay -->
+    <div
+      class="game-overlay hidden"
+      id="overlay-victory"
+      role="alertdialog"
+      aria-modal="true"
+      aria-label="Vitória"
+    >
+      <h2 class="overlay-title overlay-title--victory">🏆 Parabéns!</h2>
+      <p class="overlay-subtitle">Você completou o quebra-cabeça!</p>
+      <p class="overlay-score">
+        Movimentos: <strong id="final-moves">0</strong>
+      </p>
+      <div class="victory-buttons">
+        <button class="btn-restart" id="btn-restart" autofocus>
+          Jogar Novamente
+        </button>
+        <button class="btn-change-difficulty" id="btn-change-difficulty">
+          Mudar Dificuldade
+        </button>
+      </div>
+    </div>
+
+    <!-- Game board area -->
+    <div class="puzzle-game" id="puzzle-game" aria-label="Tabuleiro do quebra-cabeça">
+
+      <!-- HUD: moves counter + difficulty badge -->
+      <div class="memory-hud" aria-live="polite" aria-atomic="true">
+        <div class="hud-item">
+          <span class="hud-label">Movimentos</span>
+          <span class="hud-value" id="hud-moves">0</span>
+        </div>
+        <div class="hud-item">
+          <span class="hud-label">Peças</span>
+          <span class="hud-value" id="hud-pieces">0 / 0</span>
+        </div>
+        <div class="hud-item">
+          <span class="hud-label">Nível</span>
+          <span class="hud-value" id="hud-difficulty">—</span>
+        </div>
+      </div>
+
+      <!-- Puzzle board — populated by game.js -->
+      <div
+        class="puzzle-board"
+        id="puzzle-board"
+        role="list"
+        aria-label="Peças do quebra-cabeça"
+      ></div>
+
+    </div><!-- /.puzzle-game -->
+
+  </main><!-- /.game-page__container -->
+
+  <!-- =====================================================================
+       Footer back link (shared template)
+       ===================================================================== -->
   <div class="game-page__footer">
     <a
       class="btn btn--secondary"
@@ -70,6 +153,7 @@
       Voltar ao Catálogo
     </a>
   </div>
-  <script src="game.js"></script>
+
+  <script src="game.js" defer></script>
 </body>
 </html>

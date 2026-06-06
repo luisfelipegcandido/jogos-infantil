@@ -1,26 +1,143 @@
-.board {
-    width:360px;
-    height:360px;
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    grid-template-rows:repeat(3,1fr);
-    gap:4px;
+/* ==========================================================================
+   Quebra-Cabeça dos Animais — Game-specific Styles
+   games/puzzle-animais/style.css
+   ========================================================================== */
+
+/* Note: Page layout, top bar, header, back button, loading indicator, footer,
+   overlay, difficulty buttons, victory buttons and HUD styles come from the
+   shared template (../../css/style.css) and are reused via the .game-overlay,
+   .memory-hud, .btn-difficulty, .btn-restart, .btn-change-difficulty class
+   families. Only puzzle-specific styles are defined here.
+*/
+
+/* --------------------------------------------------------------------------
+   Game Container inner layout
+   -------------------------------------------------------------------------- */
+.game-page__container {
+  justify-content: flex-start;
 }
-.piece {
-    border-radius:10px;
-    cursor:pointer;
-    border:2px solid #fff;
+
+/* --------------------------------------------------------------------------
+   Overlays (Difficulty / Victory) — imported via ../../css/style.css
+   -------------------------------------------------------------------------- */
+
+/* --------------------------------------------------------------------------
+   Puzzle Game Wrapper
+   -------------------------------------------------------------------------- */
+.puzzle-game {
+  width: 100%;
+  max-width: 520px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
 }
-.piece.selected {
-    outline:4px solid yellow;
+
+/* Flex gap fallback for Safari 14.0 */
+@supports not (gap: 1px) {
+  .puzzle-game > * + * {
+    margin-top: 20px;
+  }
 }
-.hud {
-    margin-bottom:20px;
+
+/* --------------------------------------------------------------------------
+   HUD — reuses .memory-hud / .hud-item / .hud-label / .hud-value
+   from ../../css/style.css (same classes as Jogo da Memória)
+   -------------------------------------------------------------------------- */
+
+/* --------------------------------------------------------------------------
+   Puzzle Board
+   -------------------------------------------------------------------------- */
+.puzzle-board {
+  display: grid;
+  gap: 4px;
+  /* Default: easy mode (3×3) */
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  width: 100%;
+  max-width: 420px;
+  aspect-ratio: 1 / 1;
 }
-.hidden {
-    display:none;
+
+/* Hard mode: 4×4 */
+.puzzle-board--hard {
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
 }
-.victory {
-    margin-top:20px;
-    text-align:center;
+
+/* --------------------------------------------------------------------------
+   Puzzle Piece
+   -------------------------------------------------------------------------- */
+.puzzle-piece {
+  position: relative;
+  cursor: pointer;
+  border-radius: 10px;
+  border: 2px solid var(--color-border, #3a3a5c);
+  background-color: var(--color-bg-surface, #1e1e2e);
+  background-size: 300% 300%;   /* adjusted per piece by JS */
+  background-repeat: no-repeat;
+  transition: border-color 0.15s, box-shadow 0.15s, transform 0.1s;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.puzzle-piece:hover:not(.is-correct) {
+  border-color: var(--color-purple-light, #a78bfa);
+  box-shadow: 0 4px 16px var(--color-purple-glow, rgba(139, 92, 246, 0.4));
+}
+
+.puzzle-piece:focus-visible {
+  outline: 2px solid var(--color-purple, #7c3aed);
+  outline-offset: 3px;
+  border-radius: 10px;
+}
+
+/* Selected piece — highlighted for swap */
+.puzzle-piece.is-selected {
+  border-color: var(--color-yellow, #fbbf24);
+  box-shadow: 0 0 0 3px var(--color-yellow, #fbbf24),
+              0 4px 20px rgba(251, 191, 36, 0.45);
+  transform: scale(1.05);
+  z-index: 2;
+}
+
+/* Correctly placed piece */
+.puzzle-piece.is-correct {
+  border-color: var(--color-green, #22c55e);
+  box-shadow: 0 0 10px var(--color-green-glow, rgba(34, 197, 94, 0.4));
+  cursor: default;
+}
+
+/* Wrong-swap shake animation */
+@-webkit-keyframes puzzle-shake {
+  0%, 100% { -webkit-transform: translateX(0);  transform: translateX(0); }
+  20%       { -webkit-transform: translateX(-5px); transform: translateX(-5px); }
+  40%       { -webkit-transform: translateX(5px);  transform: translateX(5px); }
+  60%       { -webkit-transform: translateX(-4px); transform: translateX(-4px); }
+  80%       { -webkit-transform: translateX(4px);  transform: translateX(4px); }
+}
+
+@keyframes puzzle-shake {
+  0%, 100% { transform: translateX(0); }
+  20%       { transform: translateX(-5px); }
+  40%       { transform: translateX(5px); }
+  60%       { transform: translateX(-4px); }
+  80%       { transform: translateX(4px); }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .puzzle-piece {
+    transition: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Responsive
+   -------------------------------------------------------------------------- */
+@media (max-width: 480px) {
+  .puzzle-board {
+    max-width: 320px;
+    gap: 3px;
+  }
 }

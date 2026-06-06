@@ -76,12 +76,12 @@
   - [x] 12.6 Executar auditoria de acessibilidade (Lighthouse ou axe): verificar contraste ≥4.5:1, áreas de toque ≥44×44px, fontes ≥16px
 
 - [ ] 13. Testes
-  - [~] 13.1 Configurar ambiente de testes com `fast-check` e um test runner (ex.: Vitest ou Jest) como devDependency
-  - [~] 13.2 Escrever testes de propriedade para as Propriedades 1–6 (módulo `catalog.js`): completude dos dados, renderização do card, exclusividade da filtragem, filtro "Todos", correspondência de botões, estado vazio
-  - [~] 13.3 Escrever testes de propriedade para as Propriedades 7–8 (home e roteamento): limite de 4 destaques, clique em categoria filtra o catálogo
-  - [~] 13.4 Escrever testes de propriedade para as Propriedades 9–11 (Nave Espacial): colisão reduz vidas em 1, UI reflete estado, dificuldade monotonicamente crescente
-  - [~] 13.5 Escrever testes de propriedade para as Propriedades 12–14 (Jogo da Memória): verificação de par, atualização de estado após acerto, tabuleiro tem número correto de pares
-  - [~] 13.6 Escrever testes de propriedade para as Propriedades 15–16 (Quiz): feedback visual correto, timeout avança como incorreto
-  - [~] 13.7 Escrever testes de propriedade para as Propriedades 17–19 (Puzzle): invariante do tabuleiro, movimento troca peça e espaço, embaralhamento sempre solucionável
-  - [~] 13.8 Escrever testes de propriedade para a Propriedade 20 (extensibilidade): adição ao catálogo reflete automaticamente nos cards exibidos
-  - [~] 13.9 Escrever testes unitários por exemplo para os comportamentos específicos: menu hambúrguer, Game Over da nave, cartas virando após 1s, tela de vitória do puzzle, temporizador do quiz
+  - [ ] 13.1 Configurar ambiente de testes com `fast-check` e um test runner (ex.: Vitest ou Jest) como devDependency
+  - [ ] 13.2 Escrever testes de propriedade para as Propriedades 1–6 (módulo `catalog.js`): completude dos dados, renderização do card, exclusividade da filtragem, filtro "Todos", correspondência de botões, estado vazio
+  - [ ] 13.3 Escrever testes de propriedade para as Propriedades 7–8 (home e roteamento): limite de 4 destaques, clique em categoria filtra o catálogo
+  - [ ] 13.4 Escrever testes de propriedade para as Propriedades 9–11 (Nave Espacial): colisão reduz vidas em 1, UI reflete estado, dificuldade monotonicamente crescente
+  - [ ] 13.5 Escrever testes de propriedade para as Propriedades 12–14 (Jogo da Memória): verificação de par, atualização de estado após acerto, tabuleiro tem número correto de pares
+  - [ ] 13.6 Escrever testes de propriedade para as Propriedades 15–16 (Quiz): feedback visual correto, timeout avança como incorreto
+  - [ ] 13.7 Escrever testes de propriedade para as Propriedades 17–19 (Puzzle): invariante do tabuleiro, movimento troca peça e espaço, embaralhamento sempre solucionável
+  - [ ] 13.8 Escrever testes de propriedade para a Propriedade 20 (extensibilidade): adição ao catálogo reflete automaticamente nos cards exibidos
+  - [ ] 13.9 Escrever testes unitários por exemplo para os comportamentos específicos: menu hambúrguer, Game Over da nave, cartas virando após 1s, tela de vitória do puzzle, temporizador do quiz
