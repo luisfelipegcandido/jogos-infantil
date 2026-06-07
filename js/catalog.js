@@ -293,6 +293,9 @@ const Catalog = (function () {
     _games = _sanitizeGames(games);
     _activeCategory = FILTER_ALL;
 
+    // Sort games alphabetically by title
+    _games.sort(function (a, b) { return a.title.localeCompare(b.title); });
+
     _renderCatalogGrid();
 
     const categories = getCategories(_games);
