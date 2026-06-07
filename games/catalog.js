@@ -115,9 +115,9 @@ const GAMES = [
     featured:    true
   },
   {
-    id:          "corrida-das-estrelas",
-    title:       "Corrida das Estrelas",
-    description: "Super Raposa Corredora — Catálogo de Jogos Infantil",
+    id:          "super-raposa-corredora",
+    title:       "Super Raposa Corredora",
+    description: "Corra, pule obstáculos e colete estrelas mágicas!",
     category:    "Acao",
     cover:       "games/super-raposa-corredora/cover.png",
     path:        "games/super-raposa-corredora/index.html",
