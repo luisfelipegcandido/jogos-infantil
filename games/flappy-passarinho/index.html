@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Passe pelos canos e faça pontos sem bater — Catálogo de Jogos Infantil." />
+  <title>Flappy Passarinho — Catálogo de Jogos Infantil</title>
+  <link rel="stylesheet" href="../../css/style.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="game-page">
+
+  <div class="game-page__topbar" role="banner">
+    <a class="game-page__back-btn" href="../../index.html#catalogo" aria-label="Voltar ao Catálogo">
+      <span aria-hidden="true">←</span>
+      Voltar ao Catálogo
+    </a>
+    <span class="game-page__topbar-title" aria-hidden="true">Flappy Passarinho</span>
+  </div>
+
+  <header class="game-page__header">
+    <span class="game-page__category" aria-label="Categoria: Acao">
+      <span aria-hidden="true">🐦</span>
+      Acao
+    </span>
+    <h1 class="game-page__title">Flappy Passarinho</h1>
+    <p class="game-page__description">Passe pelos canos e faça pontos sem bater</p>
+  </header>
+
+  <div class="game-page__loading" id="game-loading" role="status"
+       aria-label="Carregando jogo" aria-live="polite">
+    <div class="loading-spinner" aria-hidden="true">
+      <span class="loading-spinner__dot"></span>
+      <span class="loading-spinner__dot"></span>
+      <span class="loading-spinner__dot"></span>
+    </div>
+    <span>Carregando…</span>
+  </div>
+
+  <main class="game-page__container" aria-label="Área do jogo Flappy Passarinho">
+
+    <div class="game-overlay" id="overlay-difficulty"
+         role="dialog" aria-modal="true" aria-label="Escolha a dificuldade">
+      <h2 class="overlay-title">Flappy Passarinho</h2>
+      <p class="overlay-subtitle">Escolha a dificuldade para começar:</p>
+
+      <div class="difficulty-buttons">
+        <button class="btn-difficulty" id="btn-easy"
+                aria-label="Jogar no modo fácil — canos mais espaçados">
+          <span aria-hidden="true">😊</span>
+          Fácil
+          <small>Canos mais espaçados</small>
+        </button>
+
+        <button class="btn-difficulty btn-difficulty--hard" id="btn-hard"
+                aria-label="Jogar no modo difícil — canos rápidos e apertados">
+          <span aria-hidden="true">🔥</span>
+          Difícil
+          <small>Mais velocidade</small>
+        </button>
+      </div>
+    </div>
+
+    <div class="game-overlay hidden" id="overlay-victory"
+         role="alertdialog" aria-modal="true" aria-label="Vitória">
+      <h2 class="overlay-title overlay-title--victory">🏆 Parabéns!</h2>
+      <p class="overlay-subtitle">Você dominou o voo e completou o desafio!</p>
+
+      <p class="overlay-score">
+        Pontos: <strong id="final-score">0</strong>
+      </p>
+
+      <div class="victory-buttons">
+        <button class="btn-restart" id="btn-restart" autofocus>Jogar Novamente</button>
+        <button class="btn-change-difficulty" id="btn-change-difficulty">Mudar Dificuldade</button>
+      </div>
+    </div>
+
+    <div class="flappy-passarinho-game" id="flappy-passarinho-game"
+         aria-label="Área do jogo">
+
+      <div class="memory-hud" aria-live="polite" aria-atomic="true">
+        <div class="hud-item">
+          <span class="hud-label">Pontos</span>
+          <span class="hud-value" id="hud-stat1">0</span>
+        </div>
+
+        <div class="hud-item">
+          <span class="hud-label">Status</span>
+          <span class="hud-value" id="hud-stat2">Pronto</span>
+        </div>
+
+        <div class="hud-item">
+          <span class="hud-label">Nível</span>
+          <span class="hud-value" id="hud-difficulty">—</span>
+        </div>
+      </div>
+
+      <div id="flappy-passarinho-board"
+           role="list"
+           aria-label="Área do voo do passarinho"></div>
+
+    </div>
+
+  </main>
+
+  <div class="game-page__footer">
+    <a class="btn btn--secondary" href="../../index.html#catalogo"
+       aria-label="Voltar ao Catálogo de Jogos">
+      <span aria-hidden="true">←</span>
+      Voltar ao Catálogo
+    </a>
+  </div>
+
+  <script src="game.js" defer></script>
+</body>
+</html>

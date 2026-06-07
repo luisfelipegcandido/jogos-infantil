@@ -104,5 +104,14 @@ const GAMES = [
     cover:       "games/jogo-da-velha/cover.png",
     path:        "games/jogo-da-velha/index.html",
     featured:    true
+  },
+  {
+    id:          "flappy-passarinho",
+    title:       "Flappy Passarinho",
+    description: "Passe pelos canos e faça pontos sem bater",
+    category:    "Acao",
+    cover:       "games/flappy-passarinho/cover.png",
+    path:        "games/flappy-passarinho/index.html",
+    featured:    true
   }
 ];
