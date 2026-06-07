@@ -113,5 +113,14 @@ const GAMES = [
     cover:       "games/flappy-passarinho/cover.png",
     path:        "games/flappy-passarinho/index.html",
     featured:    true
+  },
+  {
+    id:          "corrida-das-estrelas",
+    title:       "Corrida das Estrelas",
+    description: "Super Raposa Corredora — Catálogo de Jogos Infantil",
+    category:    "Acao",
+    cover:       "games/super-raposa-corredora/cover.png",
+    path:        "games/super-raposa-corredora/index.html",
+    featured:    true
   }
 ];

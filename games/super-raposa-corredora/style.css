@@ -1,0 +1,437 @@
+/* ==========================================================================
+   Super Raposa Corredora — Game-specific Styles
+   games/super-raposa-corredora/style.css
+   ========================================================================== */
+
+/* Overlays, HUD, botões e layout da página já estão em ../../css/style.css */
+
+/* --------------------------------------------------------------------------
+   Game Container
+   -------------------------------------------------------------------------- */
+
+.game-page__container {
+  justify-content: flex-start;
+}
+
+/* --------------------------------------------------------------------------
+   Game Wrapper
+   -------------------------------------------------------------------------- */
+
+.super-raposa-corredora-game {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+@supports not (gap: 1px) {
+  .super-raposa-corredora-game > * + * {
+    margin-top: 20px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Main Board
+   -------------------------------------------------------------------------- */
+
+#super-raposa-corredora-board {
+  position: relative;
+  width: 100%;
+  height: 460px;
+  overflow: hidden;
+  border-radius: 24px;
+  border: 2px solid var(--color-border);
+  background: var(--color-bg-surface);
+  box-shadow:
+    0 0 0 1px var(--color-border),
+    0 12px 32px rgba(0, 0, 0, 0.15);
+  touch-action: manipulation;
+}
+
+/* --------------------------------------------------------------------------
+   Parallax Layers
+   -------------------------------------------------------------------------- */
+
+.sr-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.sr-layer--sky {
+  background:
+    linear-gradient(
+      to bottom,
+      var(--color-blue-light) 0%,
+      var(--color-blue) 100%
+    );
+}
+
+.sr-layer--mountains {
+  bottom: 90px;
+  top: auto;
+  height: 180px;
+  opacity: 0.45;
+  background:
+    radial-gradient(circle at 10% 100%, var(--color-purple) 0 25%, transparent 26%),
+    radial-gradient(circle at 30% 100%, var(--color-purple-dark) 0 30%, transparent 31%),
+    radial-gradient(circle at 55% 100%, var(--color-purple) 0 32%, transparent 33%),
+    radial-gradient(circle at 78% 100%, var(--color-purple-dark) 0 26%, transparent 27%),
+    radial-gradient(circle at 100% 100%, var(--color-purple) 0 35%, transparent 36%);
+  animation: mountainsMove 24s linear infinite;
+}
+
+.sr-layer--ground {
+  top: auto;
+  bottom: 0;
+  height: 110px;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      var(--color-green) 0 40px,
+      var(--color-green-glow) 40px 80px
+    );
+  border-top: 4px solid rgba(255,255,255,0.2);
+  animation: groundMove 2s linear infinite;
+}
+
+@-webkit-keyframes mountainsMove {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-80px);
+  }
+}
+
+@keyframes mountainsMove {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-80px);
+  }
+}
+
+@-webkit-keyframes groundMove {
+  from {
+    background-position-x: 0;
+  }
+  to {
+    background-position-x: -80px;
+  }
+}
+
+@keyframes groundMove {
+  from {
+    background-position-x: 0;
+  }
+  to {
+    background-position-x: -80px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   World
+   -------------------------------------------------------------------------- */
+
+.sr-world {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+/* --------------------------------------------------------------------------
+   Player
+   -------------------------------------------------------------------------- */
+
+.sr-player {
+  position: absolute;
+  left: 90px;
+  width: 74px;
+  height: 74px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 56px;
+  z-index: 20;
+  user-select: none;
+  transform-origin: center bottom;
+}
+
+.sr-player--running {
+  animation: playerRun 0.4s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes playerRun {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes playerRun {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-4px);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Obstacles
+   -------------------------------------------------------------------------- */
+
+.sr-obstacle {
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 42px;
+  z-index: 15;
+  user-select: none;
+}
+
+/* --------------------------------------------------------------------------
+   Collectables
+   -------------------------------------------------------------------------- */
+
+.sr-star {
+  position: absolute;
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 34px;
+  z-index: 16;
+  user-select: none;
+  animation: starFloat 1.4s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes starFloat {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes starFloat {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-10px);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Clouds
+   -------------------------------------------------------------------------- */
+
+.sr-cloud {
+  position: absolute;
+  color: rgba(255,255,255,0.85);
+  font-size: 50px;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   Start Screen
+   -------------------------------------------------------------------------- */
+
+.sr-start-screen {
+  position: absolute;
+  inset: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg-overlay);
+  padding: 24px;
+  cursor: pointer;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.sr-start-screen:focus-visible {
+  outline: 2px solid var(--color-purple);
+  outline-offset: -2px;
+}
+
+.sr-start-screen.hidden {
+  display: none;
+}
+
+.sr-start-card {
+  width: min(100%, 420px);
+  background: var(--color-bg-elevated);
+  border: 2px solid var(--color-border);
+  border-radius: 20px;
+  padding: 24px;
+  text-align: center;
+  box-shadow: 0 0 24px var(--color-purple-glow);
+}
+
+.sr-start-emoji {
+  font-size: 72px;
+  margin-bottom: 12px;
+}
+
+.sr-start-title {
+  margin: 0 0 12px;
+  font-family: var(--font-heading);
+  color: var(--color-text);
+}
+
+.sr-start-text {
+  margin: 0 0 18px;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+.sr-controls {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.sr-control {
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+@supports not (gap: 1px) {
+  .sr-controls > * + * {
+    margin-left: 12px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Effects
+   -------------------------------------------------------------------------- */
+
+.sr-score-pop {
+  position: absolute;
+  color: var(--color-text-inverted);
+  font-weight: 700;
+  pointer-events: none;
+  z-index: 50;
+  animation: scorePop 0.8s ease forwards;
+}
+
+@-webkit-keyframes scorePop {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+}
+
+@keyframes scorePop {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Interactive Focus
+   -------------------------------------------------------------------------- */
+
+.sr-start-screen:focus-visible,
+.sr-control:focus-visible {
+  outline: 2px solid var(--color-purple);
+}
+
+/* --------------------------------------------------------------------------
+   Reduced Motion
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .sr-player--running,
+  .sr-star,
+  .sr-layer--mountains,
+  .sr-layer--ground,
+  .sr-score-pop {
+    animation: none !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Responsive
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 768px) {
+  #super-raposa-corredora-board {
+    height: 420px;
+  }
+
+  .sr-player {
+    left: 60px;
+    font-size: 52px;
+  }
+}
+
+@media (max-width: 480px) {
+  #super-raposa-corredora-board {
+    height: 360px;
+    border-radius: 18px;
+  }
+
+  .sr-player {
+    left: 35px;
+    width: 64px;
+    height: 64px;
+    font-size: 46px;
+  }
+
+  .sr-obstacle {
+    width: 56px;
+    height: 56px;
+    font-size: 34px;
+  }
+
+  .sr-star {
+    width: 40px;
+    height: 40px;
+    font-size: 28px;
+  }
+
+  .sr-start-card {
+    padding: 18px;
+  }
+
+  .sr-start-emoji {
+    font-size: 60px;
+  }
+}
