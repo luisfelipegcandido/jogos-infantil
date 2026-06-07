@@ -41,15 +41,19 @@ const state = {
 
 let overlayDifficulty;
 let overlayVictory;
+let overlayGameover;
 let btnEasy;
 let btnHard;
 let btnRestart;
 let btnChangeDifficulty;
+let btnRestartGameover;
+let btnChangeDifficultyGameover;
 let boardEl;
 let hudStat1;
 let hudStat2;
 let hudDifficulty;
 let finalScore;
+let gameoverMessage;
 
 /* -------------------------------------------------------------------------- */
 /* Pure Logic                                                                  */
@@ -170,6 +174,10 @@ function startGame(difficulty) {
     overlayVictory.classList.add('hidden');
   }
 
+  if (overlayGameover) {
+    overlayGameover.classList.add('hidden');
+  }
+
   renderBoard();
   updateHUD();
 }
@@ -183,8 +191,28 @@ function showDifficultyScreen() {
     overlayVictory.classList.add('hidden');
   }
 
+  if (overlayGameover) {
+    overlayGameover.classList.add('hidden');
+  }
+
   if (overlayDifficulty) {
     overlayDifficulty.classList.remove('hidden');
+  }
+}
+
+function triggerGameOver(message) {
+  if (gameoverMessage) {
+    gameoverMessage.textContent = message || 'O computador venceu desta vez. Tente novamente!';
+  }
+
+  if (overlayGameover) {
+    overlayGameover.classList.remove('hidden');
+
+    setTimeout(function () {
+      if (btnRestartGameover) {
+        btnRestartGameover.focus();
+      }
+    }, 50);
   }
 }
 
@@ -225,6 +253,7 @@ function finishTurn() {
       state.currentStatus = 'Computador venceu';
       renderBoard();
       updateHUD();
+      triggerGameOver('O computador venceu desta vez. Tente novamente!');
     }
 
     return;
@@ -235,6 +264,7 @@ function finishTurn() {
     state.currentStatus = 'Empate';
     renderBoard();
     updateHUD();
+    triggerGameOver('Empatou! Nenhum dos dois venceu desta vez.');
   }
 }
 
@@ -391,15 +421,19 @@ function updateHUD() {
 function init() {
   overlayDifficulty = document.getElementById('overlay-difficulty');
   overlayVictory = document.getElementById('overlay-victory');
+  overlayGameover = document.getElementById('overlay-gameover');
   btnEasy = document.getElementById('btn-easy');
   btnHard = document.getElementById('btn-hard');
   btnRestart = document.getElementById('btn-restart');
   btnChangeDifficulty = document.getElementById('btn-change-difficulty');
+  btnRestartGameover = document.getElementById('btn-restart-gameover');
+  btnChangeDifficultyGameover = document.getElementById('btn-change-difficulty-gameover');
   boardEl = document.getElementById('jogo-da-velha-board');
   hudStat1 = document.getElementById('hud-stat1');
   hudStat2 = document.getElementById('hud-stat2');
   hudDifficulty = document.getElementById('hud-difficulty');
   finalScore = document.getElementById('final-score');
+  gameoverMessage = document.getElementById('gameover-message');
 
   btnEasy.addEventListener('click', function () {
     startGame('easy');
@@ -411,6 +445,9 @@ function init() {
 
   btnRestart.addEventListener('click', restartGame);
   btnChangeDifficulty.addEventListener('click', showDifficultyScreen);
+
+  if (btnRestartGameover) btnRestartGameover.addEventListener('click', restartGame);
+  if (btnChangeDifficultyGameover) btnChangeDifficultyGameover.addEventListener('click', showDifficultyScreen);
 
   overlayDifficulty.classList.remove('hidden');
 }
@@ -452,7 +489,8 @@ if (typeof module !== 'undefined') {
     checkWinner,
     isDraw,
     randomMove,
-    hardMove
+    hardMove,
+    triggerGameOver
   };
 }
 
@@ -464,6 +502,7 @@ if (typeof globalThis !== 'undefined') {
     checkWinner,
     isDraw,
     randomMove,
-    hardMove
+    hardMove,
+    triggerGameOver
   };
 }

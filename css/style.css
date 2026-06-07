@@ -2217,6 +2217,11 @@ body {
   text-shadow: 0 0 16px var(--color-green-glow);
 }
 
+.overlay-title--gameover {
+  color: var(--color-error);
+  text-shadow: 0 0 16px rgba(255, 80, 80, 0.5);
+}
+
 .overlay-subtitle {
   font-size: 1.125rem;
   color: var(--color-text-muted);

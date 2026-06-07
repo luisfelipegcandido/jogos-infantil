@@ -129,6 +129,17 @@ Use exatamente este esqueleto. Substitua apenas os valores entre `{chaves}`.
       </div>
     </div>
 
+    <!-- Overlay de game over (derrota/fim sem vitória) — OBRIGATÓRIO -->
+    <div class="game-overlay hidden" id="overlay-gameover"
+         role="alertdialog" aria-modal="true" aria-label="Fim de jogo">
+      <h2 class="overlay-title overlay-title--gameover">😔 Que pena!</h2>
+      <p class="overlay-subtitle" id="gameover-message">{Mensagem de derrota específica do jogo}</p>
+      <div class="victory-buttons">
+        <button class="btn-restart" id="btn-restart-gameover" autofocus>Tentar Novamente</button>
+        <button class="btn-change-difficulty" id="btn-change-difficulty-gameover">Mudar Dificuldade</button>
+      </div>
+    </div>
+
     <!-- Área do jogo -->
     <div class="{nome-do-jogo}-game" id="{nome-do-jogo}-game"
          aria-label="Área do jogo">
@@ -267,16 +278,21 @@ Apenas estilos exclusivos do jogo. Siga este template:
 1. Comentário de cabeçalho JSDoc explicando o jogo e o estado
 2. Constantes de configuração (pool de dados, config de dificuldade)
 3. Objeto `state` central com todo o estado do jogo
-4. Declarações de variáveis DOM (let, sem inicialização)
+4. Declarações de variáveis DOM (let, sem inicialização):
+   - overlayDifficulty, overlayVictory, overlayGameover
+   - btnEasy, btnHard
+   - btnRestart, btnChangeDifficulty
+   - btnRestartGameover, btnChangeDifficultyGameover
 5. Funções de lógica pura (sem efeitos DOM)
 6. Funções de ciclo de vida: startGame(), restartGame(), showDifficultyScreen()
-7. Funções de interação do jogador
-8. Funções de renderização DOM (renderBoard() + helpers)
-9. Função updateHUD()
-10. Função init() — captura refs do DOM e registra event listeners
-11. Função boot() — aguarda fontes e chama init()
-12. window.addEventListener('DOMContentLoaded', boot)
-13. Bloco de API pública para testes (module.exports + globalThis)
+7. triggerVictory() e triggerGameOver()
+8. Funções de interação do jogador
+9. Funções de renderização DOM (renderBoard() + helpers)
+10. Função updateHUD()
+11. Função init() — captura refs do DOM e registra event listeners
+12. Função boot() — aguarda fontes e chama init()
+13. window.addEventListener('DOMContentLoaded', boot)
+14. Bloco de API pública para testes (module.exports + globalThis)
 ```
 
 ### Estado obrigatório
@@ -320,11 +336,14 @@ window.addEventListener('DOMContentLoaded', boot);
 ```js
 function init() {
   // Captura TODOS os refs DOM com getElementById
+  // overlayDifficulty, overlayVictory, overlayGameover
   // Registra event listeners nos botões de dificuldade:
   //   btnEasy.addEventListener('click', function () { startGame('easy'); });
   //   btnHard.addEventListener('click', function () { startGame('hard'); });
   // Registra btnRestart → restartGame
   // Registra btnChangeDifficulty → showDifficultyScreen
+  // Registra btnRestartGameover → restartGame
+  // Registra btnChangeDifficultyGameover → showDifficultyScreen
   // Exibe overlay-difficulty: overlayDifficulty.classList.remove('hidden');
 }
 ```
@@ -336,6 +355,7 @@ function startGame(difficulty) {
   // reset state
   if (overlayDifficulty) overlayDifficulty.classList.add('hidden');
   if (overlayVictory)    overlayVictory.classList.add('hidden');
+  if (overlayGameover)   overlayGameover.classList.add('hidden');
   renderBoard();
   updateHUD();
 }
@@ -344,6 +364,7 @@ function restartGame() { startGame(state.difficulty); }
 
 function showDifficultyScreen() {
   if (overlayVictory)    overlayVictory.classList.add('hidden');
+  if (overlayGameover)   overlayGameover.classList.add('hidden');
   if (overlayDifficulty) overlayDifficulty.classList.remove('hidden');
 }
 
@@ -352,6 +373,16 @@ function triggerVictory() {
   if (overlayVictory) {
     overlayVictory.classList.remove('hidden');
     setTimeout(function () { if (btnRestart) btnRestart.focus(); }, 50);
+  }
+}
+
+function triggerGameOver(message) {
+  // chamada quando o jogador perde (tempo esgotado, vidas zeradas, derrota, etc.)
+  const msgEl = document.getElementById('gameover-message');
+  if (msgEl && message) msgEl.textContent = message;
+  if (overlayGameover) {
+    overlayGameover.classList.remove('hidden');
+    setTimeout(function () { if (btnRestartGameover) btnRestartGameover.focus(); }, 50);
   }
 }
 ```
@@ -419,8 +450,10 @@ Antes de entregar, verifique cada item:
 - [ ] `#game-loading` presente e **não** comentado
 - [ ] `#overlay-difficulty` presente com `role="dialog"`
 - [ ] `#overlay-victory` presente com `role="alertdialog"` e class `hidden`
+- [ ] `#overlay-gameover` presente com `role="alertdialog"` e class `hidden`
 - [ ] `#btn-easy` e `#btn-hard` presentes com `aria-label`
 - [ ] `#btn-restart` com `autofocus` e `#btn-change-difficulty` presentes
+- [ ] `#btn-restart-gameover` e `#btn-change-difficulty-gameover` presentes
 - [ ] HUD com `class="memory-hud"` e `aria-live="polite"`
 - [ ] Board com `role="list"` e `aria-label`
 - [ ] `<script src="game.js" defer>` no final do body
@@ -439,10 +472,11 @@ Antes de entregar, verifique cada item:
 - [ ] Função `boot()` com o padrão de `document.fonts.ready`
 - [ ] `window.addEventListener('DOMContentLoaded', boot)`
 - [ ] `init()` captura refs, registra listeners, exibe overlay-difficulty
-- [ ] `startGame()` reseta estado, esconde overlays, chama render + updateHUD
+- [ ] `startGame()` reseta estado, esconde overlays (difficulty + victory + gameover), chama render + updateHUD
 - [ ] `restartGame()` chama `startGame(state.difficulty)`
-- [ ] `showDifficultyScreen()` troca overlays
+- [ ] `showDifficultyScreen()` esconde victory e gameover, mostra difficulty
 - [ ] `triggerVictory()` preenche #final-score, exibe overlay, foca btn-restart
+- [ ] `triggerGameOver()` exibe overlay-gameover com mensagem, foca btn-restart-gameover
 - [ ] Teclado Enter/Space funciona em todos os elementos interativos
 - [ ] API pública exportada via `module.exports` e `globalThis`
 - [ ] Sem `var`, sem arrow functions nomeadas no topo, sem libs externas

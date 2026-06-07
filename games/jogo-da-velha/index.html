@@ -75,6 +75,17 @@
       </div>
     </div>
 
+    <div class="game-overlay hidden" id="overlay-gameover"
+         role="alertdialog" aria-modal="true" aria-label="Fim de jogo">
+      <h2 class="overlay-title overlay-title--gameover">😔 Que pena!</h2>
+      <p class="overlay-subtitle" id="gameover-message">O computador venceu desta vez. Tente novamente!</p>
+
+      <div class="victory-buttons">
+        <button class="btn-restart" id="btn-restart-gameover" autofocus>Tentar Novamente</button>
+        <button class="btn-change-difficulty" id="btn-change-difficulty-gameover">Mudar Dificuldade</button>
+      </div>
+    </div>
+
     <div class="jogo-da-velha-game" id="jogo-da-velha-game"
          aria-label="Área do jogo">
 

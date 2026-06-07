@@ -40,15 +40,19 @@ const state = {
 
 let overlayDifficulty;
 let overlayVictory;
+let overlayGameover;
 let btnEasy;
 let btnHard;
 let btnRestart;
 let btnChangeDifficulty;
+let btnRestartGameover;
+let btnChangeDifficultyGameover;
 let board;
 let hudStat1;
 let hudStat2;
 let hudDifficulty;
 let finalScore;
+let finalScoreGameover;
 
 function clamp(value, min, max) {
   return Math.max(min, Math.min(max, value));
@@ -99,6 +103,7 @@ function startGame(difficulty) {
 
   if (overlayDifficulty) overlayDifficulty.classList.add('hidden');
   if (overlayVictory) overlayVictory.classList.add('hidden');
+  if (overlayGameover) overlayGameover.classList.add('hidden');
 
   cancelAnimationFrame(state.animationId);
 
@@ -119,8 +124,29 @@ function showDifficultyScreen() {
     overlayVictory.classList.add('hidden');
   }
 
+  if (overlayGameover) {
+    overlayGameover.classList.add('hidden');
+  }
+
   if (overlayDifficulty) {
     overlayDifficulty.classList.remove('hidden');
+  }
+}
+
+function triggerGameOver() {
+  state.gameOver = true;
+  state.status = 'Fim';
+
+  if (finalScoreGameover) {
+    finalScoreGameover.textContent = String(state.score);
+  }
+
+  if (overlayGameover) {
+    overlayGameover.classList.remove('hidden');
+
+    setTimeout(function () {
+      if (btnRestartGameover) btnRestartGameover.focus();
+    }, 50);
   }
 }
 
@@ -193,7 +219,6 @@ function gameLoop() {
       state.status = 'Fim';
       state.gameOver = true;
     }
-
     if (pipe.x < -100) {
       state.pipes.splice(i, 1);
     }
@@ -214,6 +239,8 @@ function gameLoop() {
 
   if (!state.gameOver) {
     state.animationId = requestAnimationFrame(gameLoop);
+  } else {
+    triggerGameOver();
   }
 }
 
@@ -292,15 +319,19 @@ function updateHUD() {
 function init() {
   overlayDifficulty = document.getElementById('overlay-difficulty');
   overlayVictory = document.getElementById('overlay-victory');
+  overlayGameover = document.getElementById('overlay-gameover');
   btnEasy = document.getElementById('btn-easy');
   btnHard = document.getElementById('btn-hard');
   btnRestart = document.getElementById('btn-restart');
   btnChangeDifficulty = document.getElementById('btn-change-difficulty');
+  btnRestartGameover = document.getElementById('btn-restart-gameover');
+  btnChangeDifficultyGameover = document.getElementById('btn-change-difficulty-gameover');
   board = document.getElementById('flappy-passarinho-board');
   hudStat1 = document.getElementById('hud-stat1');
   hudStat2 = document.getElementById('hud-stat2');
   hudDifficulty = document.getElementById('hud-difficulty');
   finalScore = document.getElementById('final-score');
+  finalScoreGameover = document.getElementById('final-score-gameover');
 
   btnEasy.addEventListener('click', function () {
     startGame('easy');
@@ -312,6 +343,9 @@ function init() {
 
   btnRestart.addEventListener('click', restartGame);
   btnChangeDifficulty.addEventListener('click', showDifficultyScreen);
+
+  if (btnRestartGameover) btnRestartGameover.addEventListener('click', restartGame);
+  if (btnChangeDifficultyGameover) btnChangeDifficultyGameover.addEventListener('click', showDifficultyScreen);
 
   board.setAttribute('tabindex', '0');
 
@@ -349,6 +383,7 @@ if (typeof module !== 'undefined') {
     restartGame,
     showDifficultyScreen,
     triggerVictory,
+    triggerGameOver,
     clamp,
     createPipePair,
     birdHitsPipe
@@ -362,6 +397,7 @@ if (typeof globalThis !== 'undefined') {
     restartGame,
     showDifficultyScreen,
     triggerVictory,
+    triggerGameOver,
     clamp,
     createPipePair,
     birdHitsPipe
