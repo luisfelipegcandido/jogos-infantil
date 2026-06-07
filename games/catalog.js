@@ -95,5 +95,14 @@ const GAMES = [
     cover:       "games/desafio-matematico/cover.png",
     path:        "games/desafio-matematico/index.html",
     featured:    true
+  },
+  {
+    id:          "jogo-da-velha",
+    title:       "Jogo da Velha",
+    description: "Desafie o computador e complete três símbolos em linha.",
+    category:    "Raciocinio",
+    cover:       "games/jogo-da-velha/cover.png",
+    path:        "games/jogo-da-velha/index.html",
+    featured:    true
   }
 ];

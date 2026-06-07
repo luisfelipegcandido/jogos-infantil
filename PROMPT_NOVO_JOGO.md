@@ -403,7 +403,7 @@ o objeto):
   category:    "{Acao | Memoria | Raciocinio | Quebra-Cabeca}",
   cover:       "games/{nome-do-jogo}/cover.png",
   path:        "games/{nome-do-jogo}/index.html",
-  featured:    false
+  featured:    true
 }
 ```
 
